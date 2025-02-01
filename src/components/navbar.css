@@ -8,7 +8,6 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     width: 95%; /* Asegura que el navbar ocupe todo el ancho */
     position: static
-    z-index: 10; /* Asegura que el navbar esté por encima de otros elementos */
 }
 
 .menu ul {
@@ -63,4 +62,3 @@
       margin-top: 1rem; /* Añade espacio entre el menú y la barra de búsqueda */
     }
   }
-  

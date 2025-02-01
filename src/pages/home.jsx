@@ -16,6 +16,9 @@ const Home = () => {
     { id: 4, name: "Dorayaki", brand: "Tsubaki", price: "$3.990", discount: "$2.990", image: mochiImage },
     { id: 5, name: "Mochi Variado", brand: "Yuki & Love", price: "$6.990", discount: "$4.990", image: mochiImage },
     { id: 6, name: "Sake Premium", brand: "Hakutsuru", price: "$19.990", discount: "$14.990", image: mochiImage },
+    { id: 7, name: "Mascarilla Pepino", brand: "Haokali", price: "$1.990", discount: "$1.450", image: mochiImage },
+    { id: 8, name: "Ampolla Centella", brand: "Skin10004", price: "$29.990", discount: "$20.990", image: mochiImage },
+    
   ];
 
   return (

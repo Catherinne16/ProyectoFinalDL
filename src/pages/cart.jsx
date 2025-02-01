@@ -8,9 +8,9 @@ const Cart = () => {
 
   const calculateTotal = () => {
     return cart.reduce(
-      (total, item) => total + parseFloat(item.price.replace("$", "")) * item.quantity,
+      (total, item) => total + parseInt(item.price.replace("$", "").replace(".", "")) * item.quantity,
       0
-    ).toFixed(2);
+    );
   };
 
   const updateQuantity = (id, amount) => {
@@ -34,17 +34,37 @@ const Cart = () => {
         <p>Tu carrito está vacío</p>
       ) : (
         <div>
-          <ul>
-            {cart.map((item) => (
-              <li key={item.id}>
-                <span>{item.name}</span>
-                <span>{item.quantity} x {item.price}</span>
-                <button onClick={() => updateQuantity(item.id, -1)}>-</button>
-                <button onClick={() => updateQuantity(item.id, 1)}>+</button>
-                <button onClick={() => removeFromCart(item.id)}>Eliminar</button>
-              </li>
-            ))}
-          </ul>
+          <table className="cart-table">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cart.map((item) => (
+                <tr key={item.id}>
+                  <td>
+                    <img src={item.image} alt={item.name} className="cart-product-image" />
+                    {item.name}
+                  </td>
+                  <td>
+                    <button onClick={() => updateQuantity(item.id, -1)}>-</button>
+                    {item.quantity}
+                    <button onClick={() => updateQuantity(item.id, 1)}>+</button>
+                  </td>
+                  <td>{item.price}</td>
+                  <td>
+                    <button onClick={() => removeFromCart(item.id)} className="remove-btn">
+                      Eliminar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <div className="total">
             <p>Total: ${calculateTotal()}</p>
           </div>
