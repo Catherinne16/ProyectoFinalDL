@@ -1,0 +1,64 @@
+/* Estilos para la página de Favoritos */
+.favorites-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido */
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f5f5f5;
+}
+
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas por defecto */
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.favorites-grid .product-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.favorites-grid .product-card:hover {
+    transform: scale(1.05); /* Efecto de hover */
+}
+
+.favorites-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+
+/* Estilos para el botón de volver al inicio */
+.back-home-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2.5rem;
+    background-color: #e221b2;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 50px;  /* Bordes redondeados */
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.back-home-btn:hover {
+    background-color: #e438b9; /* Cambio de color en hover */
+    transform: translateY(-2px); /* Ligero efecto de elevación */
+}
+
+.back-home-btn:active {
+    transform: translateY(1px); /* Efecto cuando el botón es presionado */
+}
+
+.back-home-btn .icon {
+    margin-right: 8px;  /* Espacio entre el icono y el texto */
+}

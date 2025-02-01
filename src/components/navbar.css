@@ -1,0 +1,66 @@
+/* navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem; /* Ajusta el padding para un mejor espaciado */
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    width: 95%; /* Asegura que el navbar ocupe todo el ancho */
+    position: static
+    z-index: 10; /* Asegura que el navbar esté por encima de otros elementos */
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem; /* Espaciado entre los elementos del menú */
+    padding: 0;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    color: #333; /* Color de texto */
+    font-weight: 600;
+    transition: color 0.3s ease; /* Transición para un hover suave */
+}
+
+.menu ul li a:hover {
+    color: #ff4d4d; /* Cambia el color al pasar el mouse */
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-bar input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.profile-icons .icon {
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
+/* navbar.css - Responsividad */
+@media (max-width: 768px) {
+    .navbar {
+      flex-direction: column; /* Coloca los elementos del navbar en columna en pantallas pequeñas */
+      align-items: center;
+      padding: 1rem;
+    }
+  
+    .menu ul {
+      flex-direction: column; /* Apila los enlaces del menú verticalmente */
+      gap: 1rem;
+    }
+  
+    .search-bar {
+      margin-top: 1rem; /* Añade espacio entre el menú y la barra de búsqueda */
+    }
+  }
+  

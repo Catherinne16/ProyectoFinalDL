@@ -1,0 +1,88 @@
+/* Estilos para el contenedor del carrito */
+.cart-container {
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 1200px;
+    margin: 2rem auto;
+  }
+  
+  .cart-container h2 {
+    text-align: center;
+  }
+  
+  .cart-container ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cart-container li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-container .total {
+    font-weight: bold;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .checkout-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 2rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .checkout-btn:hover {
+    background-color: #e03e3e;
+  }
+  
+  /* Estilos para el botón de volver al inicio */
+  .back-home-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #ff4d4d;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-home-btn:hover {
+    background-color: #e03e3e; /* Cambio de color en hover */
+  }
+  
+
+  /* Estilos para el botón de volver al inicio */
+.back-home-btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background-color: #e221b2;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .back-home-btn:hover {
+    background-color: #e438b9; /* Cambio de color en hover */
+  }
+  
