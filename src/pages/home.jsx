@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";  // Asegúrate de importar Link
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import ProductCard from "../components/productcard"; 
 import Navbar from "../components/navbar"; 
 import Carousel from "../components/carousel"; 
 import Footer from "../components/footer"; 
 import mochiImage from "../assets/images/mochi.jpg"; 
-import "./Home.css";
+import "./home.css";
 
 const Home = () => {
   // Datos de productos
@@ -23,7 +23,6 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <Navbar /> {/* Navbar */}
       <div className="content"> {/* Contenido con padding */}
         <Carousel /> {/* Carrusel */}
         <div className="products-grid">
@@ -32,7 +31,6 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <Footer /> {/* Footer */}
     </div>
   );
 };
