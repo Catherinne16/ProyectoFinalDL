@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa"; // Asegúrate de importar el icono
+import { FaArrowLeft } from "react-icons/fa";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({
@@ -46,10 +46,10 @@ const Login = () => {
             required
           />
         </div>
-        <button type="submit">Iniciar sesión</button>
+        <button type="submit" className="login-btn">Iniciar sesión</button>
       </form>
       <p>
-        ¿No tienes cuenta? <Link to="/register">Regístrate aquí</Link>
+        ¿No tienes cuenta? <Link to="/register" className="signup-link">Regístrate aquí</Link>
       </p>
     </div>
   );
