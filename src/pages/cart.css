@@ -1,7 +1,7 @@
 /* Estilos para el contenedor del carrito */
 .cart-container {
   padding: 2rem;
-  background-color: #fff;
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 90%;
@@ -29,11 +29,11 @@
 .cart-table td {
   padding: 1rem;
   text-align: center;
-  border: 1px solid #ddd;
+  border-radius: 3%;
 }
 
 .cart-table th {
-  background-color: #f4f4f4;
+  background-color: #ffffff;
 }
 
 .cart-product-image {
@@ -44,8 +44,8 @@
 }
 
 .cart-container button {
-  background-color: #ff4d4d;
-  color: white;
+  background-color: #F6378F;
+  color: rgb(255, 255, 255);
   font-size: 1rem;
   border: none;
   padding: 0.5rem 1rem;
@@ -55,7 +55,7 @@
 }
 
 .cart-container button:hover {
-  background-color: #e438b9;
+  background-color: #8EA5EB;
 }
 
 /* Estilo para el botón de eliminar */
@@ -96,7 +96,7 @@
   padding: 1rem;
   background-color: #ff4d4d;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border: none;
   border-radius: 5px;
   cursor: pointer;
