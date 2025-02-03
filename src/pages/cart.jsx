@@ -71,7 +71,9 @@ const Cart = () => {
           <button className="checkout-btn">Finalizar Compra</button>
         </div>
       )}
-      <Link to="/" className="back-home-btn">Volver al Inicio</Link>
+      <div className="back-home-container">
+        <Link to="/" className="back-home-btn">Volver al Inicio</Link>
+      </div>
     </div>
   );
 };
