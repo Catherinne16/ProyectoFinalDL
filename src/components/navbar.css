@@ -1,33 +1,50 @@
 /* navbar.css */
 .navbar {
+    height: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem; /* Ajusta el padding para un mejor espaciado */
-    background-color: #8EA5EB; /* Fondo blanco */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    width: 95%; /* Asegura que el navbar ocupe todo el ancho */
-    position: static
+    padding: 1rem 2rem;
+    background-color: #8EA5EB;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ocupa todo el ancho */
+    top: 0;
+    left: 0;
+}
+
+/* Contenedor del logo y el menú */
+.navbar-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* Menú principal */
+.menu {
+    display: flex;
 }
 
 .menu ul {
     list-style: none;
     display: flex;
-    gap: 1.5rem; /* Espaciado entre los elementos del menú */
+    gap: 1.5rem;
     padding: 0;
+    margin: 0;
 }
 
 .menu ul li a {
     text-decoration: none;
-    color: #ffffff; /* Color de texto */
+    color: #ffffff;
     font-weight: 600;
-    transition: color 0.3s ease; /* Transición para un hover suave */
+    transition: color 0.3s ease;
 }
 
 .menu ul li a:hover {
-    color: #F6378F; /* Cambia el color al pasar el mouse */
+    color: #F6378F;
 }
 
+/* Barra de búsqueda */
 .search-bar {
     display: flex;
     align-items: center;
@@ -40,25 +57,90 @@
     border-radius: 5px;
 }
 
+/* Íconos del perfil */
+.profile-icons {
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 1rem;
+}
+
 .profile-icons .icon {
-    margin-left: 1rem;
     cursor: pointer;
 }
 
-/* navbar.css - Responsividad */
+/* Botón de menú hamburguesa */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #ffffff;
+    transition: 0.3s ease-in-out;
+}
+
+/* Responsividad */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .menu ul {
+        gap: 1rem;
+    }
+}
+
 @media (max-width: 768px) {
     .navbar {
-      flex-direction: column; /* Coloca los elementos del navbar en columna en pantallas pequeñas */
-      align-items: center;
-      padding: 1rem;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
     }
-  
+
+    .navbar-content {
+        flex-direction: column;
+    }
+
+    .menu {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
     .menu ul {
-      flex-direction: column; /* Apila los enlaces del menú verticalmente */
-      gap: 1rem;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
     }
-  
-    .search-bar {
-      margin-top: 1rem; /* Añade espacio entre el menú y la barra de búsqueda */
+
+    .menu ul li {
+        width: 100%;
     }
-  }
+
+    .menu ul li a {
+        display: block;
+        padding: 0.75rem 0;
+        width: 100%;
+    }
+
+    .menu-toggle {
+        display: block;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.2rem;
+    }
+
+    .menu.active {
+        display: flex;
+    }
+}

@@ -72,23 +72,3 @@
       width: 90%;
     }
   }
-  
-
-  /* Estilos para el botón de volver al inicio */
-.back-home-btn {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 1rem 2rem;
-    background-color: #e221b2;
-    color: white;
-    font-size: 1.2rem;
-    border-radius: 5px;
-    text-decoration: none;
-    text-align: center;
-    transition: background-color 0.3s ease;
-  }
-  
-  .back-home-btn:hover {
-    background-color: #e438b9; /* Cambio de color en hover */
-  }
-  

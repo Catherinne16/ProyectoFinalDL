@@ -1,14 +1,22 @@
-import React, { useState } from "react";
+import React from "react";
 import { FaHeart } from "react-icons/fa";
 import { useGlobalContext } from "../context/GlobalContext"; // Importar el contexto
 import "./productCard.css";
 
 const ProductCard = ({ product }) => {
-  const { cart, setCart } = useGlobalContext(); // Acceder al carrito global
-  const [isFavorite, setIsFavorite] = useState(false);
+  const { cart, setCart, favorites, setFavorites } = useGlobalContext(); // Acceder al carrito y favoritos
+
+  // Verificar si el producto está en favoritos
+  const isFavorite = favorites.some((fav) => fav.id === product.id);
 
   const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      // Si ya está en favoritos, lo eliminamos
+      setFavorites(favorites.filter((fav) => fav.id !== product.id));
+    } else {
+      // Si no está en favoritos, lo agregamos
+      setFavorites([...favorites, product]);
+    }
   };
 
   const handleAddToCart = () => {
@@ -44,7 +52,7 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div className="favorite-btn" onClick={toggleFavorite}>
-        <FaHeart color={isFavorite ? "#e221b2" : "#ccc"} size={24} />
+        <FaHeart color={isFavorite ? "#F6378F" : "#ccc"} size={24} />
       </div>
     </div>
   );

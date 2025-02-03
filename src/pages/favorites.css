@@ -1,64 +1,78 @@
-/* Estilos para la página de Favoritos */
+/* Contenedor principal de favoritos */
 .favorites-container {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centra el contenido */
-    justify-content: center;
-    padding: 2rem;
-    background-color: #f5f5f5;
-}
-
-.favorites-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Tres columnas por defecto */
-    gap: 2rem;
+    align-items: center;
     width: 100%;
-    max-width: 1200px;
+    padding: 2rem;
 }
 
-.favorites-grid .product-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-}
-
-.favorites-grid .product-card:hover {
-    transform: scale(1.05); /* Efecto de hover */
-}
-
+/* Título de favoritos */
 .favorites-title {
     font-size: 2rem;
     margin-bottom: 1.5rem;
-    color: #333;
-}
-
-
-/* Estilos para el botón de volver al inicio */
-.back-home-btn {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 1rem 2.5rem;
-    background-color: #e221b2;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 50px;  /* Bordes redondeados */
-    text-decoration: none;
     text-align: center;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil */
 }
 
-.back-home-btn:hover {
-    background-color: #e438b9; /* Cambio de color en hover */
-    transform: translateY(-2px); /* Ligero efecto de elevación */
+/* Mensaje cuando no hay favoritos */
+.empty-message {
+    font-size: 1.2rem;
+    color: #555;
 }
 
-.back-home-btn:active {
-    transform: translateY(1px); /* Efecto cuando el botón es presionado */
+/* Grid de favoritos */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 1.5rem;
+    width: 100%;
+    max-width: 1200px;
+    padding: 2rem;
+    justify-content: center;
+    margin: auto;
 }
 
-.back-home-btn .icon {
-    margin-right: 8px;  /* Espacio entre el icono y el texto */
+/* Tarjeta de producto en favoritos */
+.favorite-card {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem 1rem 3rem;
+    text-align: center;
+}
+
+/* Imagen del producto */
+.favorite-image {
+    width: 100%;
+    height: 70%;
+    object-fit: cover;
+}
+
+/* Información del producto */
+.favorite-card h3 {
+    margin: 0.5rem 0;
+}
+
+.favorite-card p {
+    color: #555;
+    margin-bottom: 1rem;
+}
+
+/* Botón de eliminar de favoritos */
+.remove-fav-btn {
+    background: #F6378F;
+    color: white;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-fav-btn:hover {
+    background-color: #8EA5EB;
 }
