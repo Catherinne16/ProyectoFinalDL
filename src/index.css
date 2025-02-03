@@ -18,10 +18,9 @@
 }
 
 .back-home-btn {
-  display: block;
-  width: fit-content;
+  display: center;
   margin: 5rem;
-  position: relative;
+  position: absolute;
   bottom: 50px;
   left: 50%;
   padding: 1rem 2rem;

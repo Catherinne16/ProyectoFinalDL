@@ -4,12 +4,14 @@ body {
     background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 /* Para que el home-container use toda la pantalla */
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1
 }
 
 #root, .home-container {

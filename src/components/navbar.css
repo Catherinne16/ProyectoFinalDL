@@ -7,7 +7,6 @@
     padding: 1rem 2rem;
     background-color: #8EA5EB;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%; /* Ocupa todo el ancho */
     top: 0;
     left: 0;
 }
