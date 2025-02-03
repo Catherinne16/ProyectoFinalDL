@@ -22,9 +22,6 @@ const Register = () => {
 
   return (
     <div className="register-container">
-      <Link to="/" className="back-home-btn">
-        <FaArrowLeft className="icon" /> Volver al Inicio
-      </Link>
       <h2>Registrarse</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -62,6 +59,9 @@ const Register = () => {
       <p>
         ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
       </p>
+      <Link to="/" className="back-home-btn">
+        <FaArrowLeft className="icon" /> Volver al Inicio
+      </Link>
     </div>
   );
 };

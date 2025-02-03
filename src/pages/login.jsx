@@ -21,9 +21,6 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <Link to="/" className="back-home-btn">
-        <FaArrowLeft className="icon" /> Volver al Inicio
-      </Link>
       <h2>Iniciar sesión</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -51,6 +48,9 @@ const Login = () => {
       <p>
         ¿No tienes cuenta? <Link to="/register" className="signup-link">Regístrate aquí</Link>
       </p>
+      <Link to="/" className="back-home-btn">
+        <FaArrowLeft className="icon" /> Volver al Inicio
+      </Link>
     </div>
   );
 };
