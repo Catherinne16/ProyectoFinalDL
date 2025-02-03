@@ -1,12 +1,12 @@
 /* footer.css */
 .footer {
-    background-color: #333;
+    background-color: #8EA5EB;
     color: white;
     text-align: center;
     padding: 1rem 2rem;
     font-size: 0.9rem;
     height: 100%;
-    border-top: 1px solid #444;
+    border-top: 1px solid #8EA5EB;
     position: relative;
     bottom: 0;
     margin-top: auto;  /* Se asegura de que el footer esté en la parte inferior */
