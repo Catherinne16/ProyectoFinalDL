@@ -20,9 +20,8 @@
 .back-home-btn {
   display: center;
   margin: 5rem;
-  position: absolute;
-  bottom: 50px;
-  left: 50%;
+  position: relative;
+  bottom: 5px;
   padding: 1rem 2rem;
   background-color: #F6378F;
   color: white;
