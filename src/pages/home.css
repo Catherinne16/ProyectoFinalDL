@@ -10,10 +10,13 @@ body {
 /* Para que el home-container use toda la pantalla */
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #root, .home-container {
     min-height: 100vh;
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
@@ -30,5 +33,5 @@ html, body {
 .content {
     padding: 0rem;
     width: 100%;
-    flex-grow: 1;
+    height: 100%;
 }
