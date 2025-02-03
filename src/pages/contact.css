@@ -1,74 +1,98 @@
 /* Estilos para el contenedor del formulario */
 .contact-container {
-    width: 80%;
-    max-width: 600px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .contact-container h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .contact-container p {
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 2rem;
-  }
-  
-  /* Estilos para el formulario */
-  .contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  label {
-    font-size: 1rem;
-    color: #333;
-  }
-  
-  input, textarea {
-    padding: 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 100%;
-  }
-  
-  textarea {
-    resize: vertical;
-    min-height: 100px;
-  }
-  
-  button.submit-btn {
-    background-color: #ff4d4d;
-    color: white;
-    font-size: 1.1rem;
-    padding: 0.75rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button.submit-btn:hover {
-    background-color: #e03e3e; /* Cambio de color en hover */
-  }
-  
-  /* Estilos responsive */
-  @media (max-width: 768px) {
-    .contact-container {
+  width: 80%;
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center; /* Asegura que los elementos dentro estén centrados */
+}
+
+.contact-container h2 {
+  margin-bottom: 1.5rem;
+}
+
+.contact-container p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Estilos para el formulario */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-size: 1rem;
+  color: #333;
+}
+
+input, textarea {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+button.submit-btn {
+  background-color: #FFDD00;
+  color: white;
+  font-size: 1.1rem;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.submit-btn:hover {
+  background-color: #8EA5EB; /* Cambio de color en hover */
+}
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+  .contact-container {
       width: 90%;
-    }
   }
+}
+
+/* Estilos para el botón de volver al inicio */
+.back-home-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  background-color: #e221b2;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+/* Aseguramos que el botón esté centrado */
+.contact-container .back-home-btn {
+  display: inline-block;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.back-home-btn:hover {
+  background-color: #e438b9; /* Cambio de color en hover */
+}
