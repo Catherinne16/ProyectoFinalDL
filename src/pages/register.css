@@ -1,68 +1,93 @@
 .register-container {
-    width: 100%;
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-  
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.8rem;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    font-size: 1rem;
-  }
-  
-  button {
-    width: 100%;
-    padding: 0.8rem;
-    background-color: #e221b2;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  button:hover {
-    background-color: #e438b9;
-  }
-  
-  p {
-    text-align: center;
-    margin-top: 1rem;
-  }
-  
-  a {
-    color: #e221b2;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  .icon {
-    margin-right: 0.5rem;
-  }
-  
-  
+  width: 100%;
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 5rem;
+  background-color: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  font-family: 'Noto Sans JP', sans-serif;
+}
+
+h2 {
+  font-size: 2rem;
+  color: #b83227;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.input-group {
+  margin-bottom: 1.2rem;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 1rem;
+  color: black;
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.8rem;
+  border: 2px solid black;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-field:focus {
+  border-color: #ff7f50;
+  box-shadow: 0 0 5px #ff7f50;
+}
+
+.register-btn {
+  width: 107%;
+  padding: 0.8rem;
+  background-color: #FFDD00;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-btn:hover {
+  background-color: #ffc107;
+}
+
+.signup-text {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: black;
+}
+
+.signup-link {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+
+.back-home-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  color: black;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.icon {
+  margin-right: 0.5rem;
+}

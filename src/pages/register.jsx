@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaArrowLeft } from "react-icons/fa"; // Asegúrate de importar el icono
+import { FaArrowLeft } from "react-icons/fa"; 
+import "./register.css";
 
 const Register = () => {
   const [userData, setUserData] = useState({
@@ -16,48 +17,50 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica de envío de datos, como una llamada a la API
     console.log("User registered:", userData);
   };
 
   return (
     <div className="register-container">
       <h2>Registrarse</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Nombre de usuario</label>
+      <form onSubmit={handleSubmit} className="register-form">
+        <div className="input-group">
+          <label className="text-black">Nombre de usuario</label>
           <input
             type="text"
             name="username"
             value={userData.username}
             onChange={handleChange}
             required
+            className="input-field"
           />
         </div>
-        <div className="form-group">
-          <label>Correo electrónico</label>
+        <div className="input-group">
+          <label className="text-black">Correo electrónico</label>
           <input
             type="email"
             name="email"
             value={userData.email}
             onChange={handleChange}
             required
+            className="input-field"
           />
         </div>
-        <div className="form-group">
-          <label>Contraseña</label>
+        <div className="input-group">
+          <label className="text-black">Contraseña</label>
           <input
             type="password"
             name="password"
             value={userData.password}
             onChange={handleChange}
             required
+            className="input-field"
           />
         </div>
-        <button type="submit">Registrarse</button>
+        <button type="submit" className="register-btn">Registrarse</button>
       </form>
-      <p>
-        ¿Ya tienes cuenta? <Link to="/login">Inicia sesión</Link>
+      <p className="signup-text text-black">
+        ¿Ya tienes cuenta? <Link to="/login" className="signup-link text-black">Inicia sesión</Link>
       </p>
       <Link to="/" className="back-home-btn">
         <FaArrowLeft className="icon" /> Volver al Inicio
