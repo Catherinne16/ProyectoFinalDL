@@ -24,6 +24,8 @@ Este proyecto es un **marketplace con temática asiática (japonesa/coreana)** d
   - PostgreSQL
   - JWT (JSON Web Token) para la autenticación
 
+https://github.com/pipeboxes/BackendMarketAsiatico
+
 - **Testing:**
   - Jest
   - Cypress
