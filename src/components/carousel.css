@@ -1,7 +1,7 @@
 .carousel {
     position: relative;
     width: 100%;
-    max-width: 1720px;
+    max-width: 1620px;
     margin: auto;
     overflow: hidden;
   }
@@ -19,13 +19,13 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: #8EA5EB;
+    color: #F6378F;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    font-size: 24px;
-    border-radius: 50%;
+    font-size: 30px;
+    border-radius: 75%;
   }
   
   .prev {
@@ -37,5 +37,5 @@
   }
   
   .prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: #ffc107;
   }  
