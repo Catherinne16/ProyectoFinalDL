@@ -1,14 +1,13 @@
 // src/components/Navbar.jsx
-import { useState } from "react"; // Asegúrate de importar useState
-import { Link } from "react-router-dom"; 
-import { FaSearch, FaUser, FaHeart, FaShoppingCart } from "react-icons/fa";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
 import "./navbar.css";
+import logo from "../assets/images/logonavbar.png";
 
 const Navbar = () => {
-  // Estado para controlar la visibilidad del menú en dispositivos móviles
   const [menuActive, setMenuActive] = useState(false);
 
-  // Función para alternar el estado del menú
   const toggleMenu = () => {
     setMenuActive(!menuActive);
   };
@@ -16,6 +15,11 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
+        {/* Logo */}
+        <Link to="/">
+          <img src={logo} alt="Logo" className="navbar-logo" />
+        </Link>
+
         <div className="menu-toggle" onClick={toggleMenu}>
           <div className="bar"></div>
           <div className="bar"></div>

@@ -11,15 +11,21 @@
     left: 0;
 }
 
-/* Contenedor del logo y el menú */
+/* Estilos para el logo */
+.navbar-logo {
+    height: 40px;
+    width: auto;
+    margin-right: 1rem;
+}
+
+/* Asegurar que el logo y el contenido del navbar se alineen correctamente */
 .navbar-content {
     display: flex;
     align-items: center;
-    width: 100%;
     justify-content: space-between;
+    width: 100%;
 }
 
-/* Menú principal */
 .menu {
     display: flex;
 }

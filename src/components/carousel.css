@@ -1,15 +1,43 @@
- /* Carrusel */
- .carousel {
-    height: 100%;
+/* Carrusel */
+.carousel {
+    position: relative;
     width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem 0 0 0;
+    max-width: 1720px; /* Ajusta según necesidad */
+    margin: auto;
+    overflow: hidden;
   }
   
   .carousel img {
+    margin-top: 2rem;
     width: 100%;
-    max-height: 250px;
-    object-fit: cover;
+    max-height: 540px;
+    object-fit: contain;
     border-radius: 5px;
+    transition: opacity 0.5s ease-in-out;
   }
+  
+  /* Botones de navegación */
+  .prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+  }
+  
+  .prev {
+    left: 10px;
+  }
+  
+  .next {
+    right: 10px;
+  }
+  
+  .prev:hover, .next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }  
