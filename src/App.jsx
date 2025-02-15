@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { GlobalProvider } from "./context/GlobalContext";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { GlobalProvider, useGlobalContext } from "./context/GlobalContext";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -14,6 +14,18 @@ import Carousel from "./components/carousel";
 import Sell from "./pages/Sell";
 import Profile from "./pages/Profile";
 
+function ProtectedRoute({ element }) {
+  const { user } = useGlobalContext(); // Extraemos el estado del usuario desde el contexto
+
+  // Si no hay usuario, redirige a la página de login
+  if (!user) {
+    return <Navigate to="/login" />;
+  }
+
+  // Si el usuario está logueado, renderiza el componente
+  return element;
+}
+
 function App() {
   return (
     <GlobalProvider>
@@ -24,13 +36,17 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/cart" element={<Cart />} />
+            
+            {/* Rutas protegidas */}
+            <Route path="/cart" element={<ProtectedRoute element={<Cart />} />} />
+            <Route path="/favorites" element={<ProtectedRoute element={<Favorites />} />} />
+            <Route path="/sell" element={<ProtectedRoute element={<Sell />} />} />
+            <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
+            
+            {/* Otras rutas */}
             <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/favorites" element={<Favorites />} />
             <Route path="/offers" element={<Offers />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/sell" element={<Sell />} />
-            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         <Footer />

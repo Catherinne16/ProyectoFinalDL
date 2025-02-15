@@ -1,59 +1,106 @@
 import React, { useState } from "react";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 import "./sell.css";
 
 const Sell = () => {
-  const { addProduct } = useGlobalContext();
-  const [product, setProduct] = useState({
-    name: "",
-    price: "",
-    category: "",
+  // Estado para los datos del producto y errores
+  const [productData, setProductData] = useState({
+    title: "",
     description: "",
-    image: "",
+    image: null,
   });
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
+  // Actualiza los campos de texto
   const handleChange = (e) => {
-    setProduct({ ...product, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setProductData({ ...productData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  // Guarda el archivo seleccionado
+  const handleFileChange = (e) => {
+    setProductData({ ...productData, image: e.target.files[0] });
+  };
+
+  // Envía el formulario usando FormData para incluir el archivo
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!product.name || !product.price || !product.image) {
-      alert("Por favor, completa los campos obligatorios.");
+    setError(null);
+
+    if (!productData.image) {
+      setError("¡Sube una imagen, porfa!");
       return;
     }
-    addProduct(product);
-    alert("Producto agregado con éxito");
-    setProduct({ name: "", price: "", category: "", description: "", image: "" });
+
+    const formData = new FormData();
+    formData.append("title", productData.title);
+    formData.append("description", productData.description);
+    formData.append("image", productData.image);
+
+    try {
+      const response = await fetch("http://localhost:3000/api/products", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (response.ok) {
+        alert("Producto subido exitosamente");
+        navigate("/products");
+      } else {
+        const data = await response.json();
+        setError(data.error || "Error al subir el producto");
+      }
+    } catch (error) {
+      setError("Error en el servidor");
+    }
   };
 
   return (
     <div className="sell-container">
-      <h2 className="sell-title">Subir un Nuevo Producto</h2>
-      <form className="sell-form" onSubmit={handleSubmit}>
-        <label>Nombre del Producto:</label>
-        <input type="text" name="name" value={product.name} onChange={handleChange} required />
-
-        <label>Precio:</label>
-        <input type="number" name="price" value={product.price} onChange={handleChange} required />
-
-        <label>Categoría:</label>
-        <select name="category" value={product.category} onChange={handleChange}>
-          <option value="">Selecciona una categoría</option>
-          <option value="ropa">Ropa</option>
-          <option value="accesorios">Accesorios</option>
-          <option value="tecnologia">Tecnología</option>
-          <option value="otros">Otros</option>
-        </select>
-
-        <label>Descripción:</label>
-        <textarea name="description" value={product.description} onChange={handleChange} />
-
-        <label>Imagen (URL):</label>
-        <input type="text" name="image" value={product.image} onChange={handleChange} required />
-
-        <button type="submit" className="sell-btn">Subir Producto</button>
+      <h2>Vende tu Producto</h2>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit} className="sell-form" encType="multipart/form-data">
+        <div className="input-group">
+          <label>Título</label>
+          <input
+            type="text"
+            name="title"
+            value={productData.title}
+            onChange={handleChange}
+            required
+            className="input-field"
+          />
+        </div>
+        <div className="input-group">
+          <label>Descripción</label>
+          <textarea
+            name="description"
+            value={productData.description}
+            onChange={handleChange}
+            required
+            className="input-field"
+          />
+        </div>
+        <div className="input-group">
+          <label>Imagen del Producto</label>
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            onChange={handleFileChange}
+            required
+            className="input-field"
+          />
+        </div>
+        <button type="submit" className="submit-btn">
+          Subir Producto
+        </button>
       </form>
+      <button onClick={() => navigate(-1)} className="back-btn">
+        <FaArrowLeft /> Volver
+      </button>
     </div>
   );
 };
