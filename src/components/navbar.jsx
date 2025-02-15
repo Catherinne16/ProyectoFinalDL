@@ -31,6 +31,8 @@ const Navbar = () => {
             <li><Link to="/favorites">Favoritos</Link></li>
             <li><Link to="/offers">Ofertas</Link></li>
             <li><Link to="/contact">Contacto</Link></li>
+            <li><Link to="/Profile">Perfil</Link></li>
+            <li><Link to="/Sell">Venta</Link></li>
           </ul>
         </div>
         <div className="search-bar">

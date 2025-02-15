@@ -11,13 +11,15 @@ import Contact from "./pages/contact";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import Carousel from "./components/carousel";
+import Sell from "./pages/Sell";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
     <GlobalProvider>
       <Router>
         <Navbar />
-        <div className="content"> {/* Contenedor para las rutas */}
+        <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
@@ -27,6 +29,8 @@ function App() {
             <Route path="/favorites" element={<Favorites />} />
             <Route path="/offers" element={<Offers />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/sell" element={<Sell />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         <Footer />
