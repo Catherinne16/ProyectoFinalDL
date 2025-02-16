@@ -7,7 +7,6 @@ import Footer from "../components/footer";
 import mochiImage from "../assets/images/mochi.jpg"; 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'; // Para los estilos
-import "../components/responsive.css";
 import "./home.css";
 
 const Home = () => {
