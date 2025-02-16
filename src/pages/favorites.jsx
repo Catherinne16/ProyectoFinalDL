@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { FaArrowLeft, FaTrash } from "react-icons/fa";
 import { useGlobalContext } from "../context/GlobalContext"; // Importamos el contexto
 import "./favorites.css";
@@ -9,6 +10,7 @@ const Favorites = () => {
 
   const removeFromFavorites = (id) => {
     setFavorites(favorites.filter((product) => product.id !== id));
+    toast.warning("Eliminado de favoritos");
   };
 
   return (
@@ -32,9 +34,8 @@ const Favorites = () => {
         </div>
       )}
 
-      <Link to="/" className="back-home-btn">
-        <FaArrowLeft className="icon" /> Volver al Inicio
-      </Link>
+       {/* Botón para volver al inicio */}
+            <Link to="/" className="back-home-btn">Volver al Inicio</Link>
     </div>
   );
 };

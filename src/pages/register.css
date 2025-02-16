@@ -12,7 +12,7 @@
 
 h2 {
   font-size: 2rem;
-  color: #b83227;
+  color: #F6378F;
   margin-bottom: 1.5rem;
   font-weight: bold;
 }
@@ -40,14 +40,14 @@ h2 {
 }
 
 .input-field:focus {
-  border-color: #ff7f50;
-  box-shadow: 0 0 5px #ff7f50;
+  border-color: #F6378F;
+  box-shadow: 0 0 5px #F6378F;
 }
 
 .register-btn {
   width: 107%;
   padding: 0.8rem;
-  background-color: #FFDD00;
+  background-color: #F4F8D3;
   color: white;
   font-size: 1.1rem;
   font-weight: bold;
@@ -58,7 +58,7 @@ h2 {
 }
 
 .register-btn:hover {
-  background-color: #ffc107;
+  background-color: #F4F8D3;
 }
 
 .signup-text {

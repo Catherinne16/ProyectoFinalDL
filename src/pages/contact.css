@@ -51,7 +51,7 @@ textarea {
 }
 
 button.submit-btn {
-  background-color: #FFDD00;
+  background-color: #F4F8D3;
   color: white;
   font-size: 1.1rem;
   padding: 0.75rem;
@@ -62,7 +62,7 @@ button.submit-btn {
 }
 
 button.submit-btn:hover {
-  background-color: #8EA5EB; /* Cambio de color en hover */
+  background-color: #73C7C7; /* Cambio de color en hover */
 }
 
 /* Estilos responsive */
@@ -77,7 +77,7 @@ button.submit-btn:hover {
   display: inline-block;
   margin-top: 2rem;
   padding: 1rem 2rem;
-  background-color: #e221b2;
+  background-color: #F6378F;
   color: white;
   font-size: 1.2rem;
   border-radius: 5px;
@@ -94,5 +94,5 @@ button.submit-btn:hover {
 }
 
 .back-home-btn:hover {
-  background-color: #e438b9; /* Cambio de color en hover */
+  background-color: #F6378F; /* Cambio de color en hover */
 }

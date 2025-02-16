@@ -37,7 +37,7 @@ const Login = () => {
 
       // Guardamos el usuario en el contexto y en localStorage
       login(userData);
-      navigate("/perfil"); // Redirigir al perfil
+      navigate("/profile"); // Redirigir al perfil
     } else {
       setError("Correo o contraseña incorrectos.");
     }

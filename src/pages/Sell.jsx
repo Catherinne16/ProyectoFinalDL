@@ -1,38 +1,39 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import { Link } from "react-router-dom";  
 import "./sell.css";
 
 const Sell = () => {
-  // Estado para los datos del producto y errores
   const [productData, setProductData] = useState({
     title: "",
     description: "",
     image: null,
   });
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false); // Nuevo estado para la animación de carga
   const navigate = useNavigate();
 
-  // Actualiza los campos de texto
   const handleChange = (e) => {
     const { name, value } = e.target;
     setProductData({ ...productData, [name]: value });
   };
 
-  // Guarda el archivo seleccionado
   const handleFileChange = (e) => {
     setProductData({ ...productData, image: e.target.files[0] });
   };
 
-  // Envía el formulario usando FormData para incluir el archivo
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
 
-    if (!productData.image) {
-      setError("¡Sube una imagen, porfa!");
+    if (!productData.title || !productData.description || !productData.image) {
+      toast.error("Por favor, completa todos los campos.");
       return;
     }
+
+    setIsLoading(true); // Activar la barra de carga
 
     const formData = new FormData();
     formData.append("title", productData.title);
@@ -46,14 +47,18 @@ const Sell = () => {
       });
 
       if (response.ok) {
-        alert("Producto subido exitosamente");
+        toast.success("Producto subido exitosamente");
         navigate("/products");
       } else {
         const data = await response.json();
         setError(data.error || "Error al subir el producto");
+        toast.error(data.error || "Error al subir el producto");
       }
     } catch (error) {
       setError("Error en el servidor");
+      toast.error("Error en el servidor");
+    } finally {
+      setIsLoading(false); // Desactivar la barra de carga
     }
   };
 
@@ -94,13 +99,21 @@ const Sell = () => {
             className="input-field"
           />
         </div>
-        <button type="submit" className="submit-btn">
-          Subir Producto
+
+        {/* Barra de carga */}
+        {isLoading && (
+          <div className="loading-bar">
+            <div className="progress"></div>
+          </div>
+        )}
+
+        <button type="submit" className="submit-btn" disabled={isLoading}>
+          {isLoading ? "Cargando..." : "Subir Producto"}
         </button>
       </form>
-      <button onClick={() => navigate(-1)} className="back-btn">
-        <FaArrowLeft /> Volver
-      </button>
+      <Link to="/" className="back-home-btn">
+          <FaArrowLeft className="icon" /> Volver al Inicio
+        </Link>
     </div>
   );
 };

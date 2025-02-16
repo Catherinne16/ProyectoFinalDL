@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { GlobalProvider, useGlobalContext } from "./context/GlobalContext";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'; // Importa el estilo de las notificaciones
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -30,6 +32,7 @@ function App() {
   return (
     <GlobalProvider>
       <Router>
+      <ToastContainer/>
         <Navbar />
         <div className="content">
           <Routes>

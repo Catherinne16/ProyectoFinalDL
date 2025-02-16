@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import "./cart.css";
@@ -6,13 +7,17 @@ import "./cart.css";
 const Cart = () => {
   const { cart, setCart } = useGlobalContext();
 
+  // Calcula el total del carrito, usando el precio con descuento si está disponible
   const calculateTotal = () => {
-    return cart.reduce(
-      (total, item) => total + parseInt(item.price.replace("$", "").replace(".", "")) * item.quantity,
-      0
-    );
+    return cart.reduce((total, item) => {
+      const price = item.discount
+        ? parseInt(item.discount.replace("$", "").replace(".", ""))
+        : parseInt(item.price.replace("$", "").replace(".", ""));
+      return total + price * item.quantity;
+    }, 0);
   };
 
+  // Función para actualizar la cantidad de un producto en el carrito
   const updateQuantity = (id, amount) => {
     setCart(
       cart
@@ -21,10 +26,13 @@ const Cart = () => {
         )
         .filter((item) => item.quantity > 0) // Elimina productos con cantidad 0
     );
+    toast.info(`Cantidad actualizada`);
   };
 
+  // Función para eliminar un producto del carrito
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
+    toast.error("Producto eliminado del carrito");
   };
 
   return (
@@ -55,7 +63,16 @@ const Cart = () => {
                     {item.quantity}
                     <button onClick={() => updateQuantity(item.id, 1)}>+</button>
                   </td>
-                  <td>{item.price}</td>
+                  <td>
+                    {item.discount ? (
+                      <div className="price-container">
+                        <span className="original-price">{item.price}</span>
+                        <span className="discount-price">{item.discount}</span>
+                      </div>
+                    ) : (
+                      <span className="normal-price">{item.price}</span>
+                    )}
+                  </td>
                   <td>
                     <button onClick={() => removeFromCart(item.id)} className="remove-btn">
                       Eliminar

@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-import { useGlobalContext } from "../context/GlobalContext"; // Importamos el contexto global
+import { useAuth } from "../context/AuthContext"; // Usamos el contexto de autenticación
+import { useGlobalContext } from "../context/GlobalContext"; // Usamos el contexto del carrito
 import "./navbar.css";
 import logo from "../assets/images/logonavbar.png";
 
 const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
-  const { user } = useGlobalContext(); // Obtenemos el usuario del contexto global
+  const { user } = useAuth(); // Obtenemos el usuario desde AuthContext
+  const { cartItems } = useGlobalContext(); // Obtenemos la cantidad de productos en el carrito desde GlobalContext
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -56,7 +58,11 @@ const Navbar = () => {
                 <FaUser className="icon" />
               </Link>
               <Link to="/cart">
-                <FaShoppingCart className="icon" />
+                <FaShoppingCart className="icon">
+                  {cartItems > 0 && (
+                    <span className="cart-badge">{cartItems}</span> // Mostramos el badge con el número de productos
+                  )}
+                </FaShoppingCart>
               </Link>
             </>
           ) : (

@@ -61,7 +61,7 @@
   }
   
   .cart-btn:hover {
-    background-color: #8EA5EB;
+    background-color: #73C7C7;
   }
 
   .favorite-btn {
@@ -81,7 +81,7 @@
   }
   
   .favorite-btn:hover {
-    background-color: #FFDD00; /* Color de fondo en hover */
+    background-color: #F4F8D3; /* Color de fondo en hover */
     transform: scale(1.1); /* Hace que el botón crezca un poco en hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte en hover */
   }

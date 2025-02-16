@@ -1,41 +1,57 @@
+/* Estilos generales del Carrusel */
 .carousel {
-    position: relative;
-    width: 100%;
-    max-width: 1620px;
-    margin: auto;
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  max-width: 1620px; /* Limita el ancho máximo */
+  margin: auto;
+  overflow: hidden; /* Oculta cualquier contenido que se desborde */
+}
+
+.carousel img {
+  margin-top: 2rem;
+  width: 100%;
+  height: auto; /* Ajusta automáticamente la altura */
+  object-fit: cover; /* Cubre toda el área sin deformar la imagen */
+  border-radius: 5px;
+  transition: opacity 0.5s ease-in-out; /* Transición suave para el cambio de imagen */
+}
+
+/* Botones de navegación */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%); /* Centra verticalmente */
+  background-color: #A6F1E0;
+  color: #F6378F;
+  border: none;
+  padding: 15px 20px; /* Mayor tamaño para mejorar la interacción */
+  cursor: pointer;
+  font-size: 35px; /* Tamaño del icono de la flecha */
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para mayor contraste */
+  transition: background-color 0.3s, transform 0.3s; /* Efectos en hover */
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* Hover sobre los botones */
+.prev:hover, .next:hover {
+  background-color: #F4F8D3; /* Color de fondo al pasar el mouse */
+  transform: scale(1.1); /* Hace que los botones crezcan un poco */
+}
+
+/* Hacer el carrusel más responsivo */
+@media (max-width: 768px) {
+  .carousel {
+    max-width: 100%;
   }
-  
   .carousel img {
-    margin-top: 2rem;
-    width: 100%;
-    max-height: 540px;
-    object-fit: contain;
-    border-radius: 5px;
-    transition: opacity 0.5s ease-in-out;
+    max-height: 300px; /* Limita la altura para pantallas más pequeñas */
   }
-  
-  .prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #8EA5EB;
-    color: #F6378F;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 30px;
-    border-radius: 75%;
-  }
-  
-  .prev {
-    left: 10px;
-  }
-  
-  .next {
-    right: 10px;
-  }
-  
-  .prev:hover, .next:hover {
-    background-color: #ffc107;
-  }  
+}
