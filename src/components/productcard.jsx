@@ -4,7 +4,7 @@ import { useGlobalContext } from "../context/GlobalContext";
 import { useLocation } from "react-router-dom"; // Se importa useLocation
 import "./productCard.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, onAddToCart }) => {
   const { cart, setCart, favorites, setFavorites } = useGlobalContext();
   const location = useLocation(); // Obtenemos la ruta actual
   const isOffersPage = location.pathname === "/offers"; // Determinamos si estamos en ofertas

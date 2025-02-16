@@ -5,8 +5,8 @@ import Navbar from "../components/navbar";
 import Carousel from "../components/carousel"; 
 import Footer from "../components/footer"; 
 import mochiImage from "../assets/images/mochi.jpg"; 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Para los estilos
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Para los estilos
 import "./home.css";
 
 const Home = () => {
@@ -24,9 +24,16 @@ const Home = () => {
     { id: 10, name: "Chaqueta Coreana", brand: "Seoul Fashion", price: "$29.990", discount: "$24.990", image: mochiImage },
     { id: 11, name: "Toner Facial", brand: "Innisfree", price: "$12.990", discount: "$9.990", image: mochiImage },
     { id: 12, name: "Collar para Gato", brand: "CatLife", price: "$1.990", discount: "$1.490", image: mochiImage },
-
-    
   ];
+
+  // Función para manejar la adición del producto al carrito y mostrar el toast
+  const handleAddToCart = (product) => {
+    // Aquí iría la lógica para agregar el producto al carrito (por ejemplo, actualizando un contexto)
+    toast.success(`¡${product.name} agregado al carrito!`, {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 3000,
+    });
+  };
 
   return (
     <div className="home-container">
@@ -34,11 +41,15 @@ const Home = () => {
         <Carousel /> {/* Carrusel */}
         <div className="products-grid">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard 
+              key={product.id} 
+              product={product} 
+              onAddToCart={handleAddToCart} // Se pasa la función al componente
+            />
           ))}
         </div>
       </div>
-    </div>
+     </div>
   );
 };
 

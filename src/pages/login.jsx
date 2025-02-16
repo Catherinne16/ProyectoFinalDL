@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { useGlobalContext } from "../context/GlobalContext";
 import { FaArrowLeft } from "react-icons/fa";
 import { useAuth } from "../context/AuthContext"; // Importamos el contexto de autenticación
 import "./login.css";
@@ -7,8 +8,9 @@ import "./login.css";
 const Login = () => {
   const [credentials, setCredentials] = useState({ correo: "", clave: "" });
   const [error, setError] = useState(null);
-  const { login } = useAuth(); // Accedemos a la función login del contexto
+  const { login } = useGlobalContext(); // Accedemos a la función login del contexto
   const navigate = useNavigate();
+  
 
   // Función para manejar los cambios en los inputs
   const handleChange = (e) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import { Link } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import "./cart.css";
@@ -26,13 +26,20 @@ const Cart = () => {
         )
         .filter((item) => item.quantity > 0) // Elimina productos con cantidad 0
     );
-    toast.info(`Cantidad actualizada`);
+    toast.info("Cantidad actualizada", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
   };
+
 
   // Función para eliminar un producto del carrito
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item.id !== id));
-    toast.error("Producto eliminado del carrito");
+    toast.error("Producto eliminado del carrito", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+    });
   };
 
   return (
@@ -91,6 +98,7 @@ const Cart = () => {
       <div className="back-home-container">
         <Link to="/" className="back-home-btn">Volver al Inicio</Link>
       </div>
+      <ToastContainer /> {/* Asegúrate de que ToastContainer esté presente para mostrar las notificaciones */}
     </div>
   );
 };

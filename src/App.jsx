@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import { GlobalProvider, useGlobalContext } from "./context/GlobalContext";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'; // Importa el estilo de las notificaciones
+import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -16,36 +16,29 @@ import Carousel from "./components/carousel";
 import Sell from "./pages/Sell";
 import Profile from "./pages/Profile";
 
-function ProtectedRoute({ element }) {
-  const { user } = useGlobalContext(); // Extraemos el estado del usuario desde el contexto
-
-  // Si no hay usuario, redirige a la página de login
-  if (!user) {
-    return <Navigate to="/login" />;
-  }
-
-  // Si el usuario está logueado, renderiza el componente
-  return element;
+function ProtectedRoute({ children }) {
+  const { user } = useGlobalContext();
+  return user ? children : <Navigate to="/login" />;
 }
 
 function App() {
   return (
-    <GlobalProvider>
-      <Router>
-      <ToastContainer/>
+    <Router>
+      <GlobalProvider> {/* 🔥 Ahora el contexto está dentro de Router */}
+        <ToastContainer />
         <Navbar />
         <div className="content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            
+
             {/* Rutas protegidas */}
-            <Route path="/cart" element={<ProtectedRoute element={<Cart />} />} />
-            <Route path="/favorites" element={<ProtectedRoute element={<Favorites />} />} />
-            <Route path="/sell" element={<ProtectedRoute element={<Sell />} />} />
-            <Route path="/profile" element={<ProtectedRoute element={<Profile />} />} />
-            
+            <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
+            <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
+            <Route path="/sell" element={<ProtectedRoute><Sell /></ProtectedRoute>} />
+            <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
+
             {/* Otras rutas */}
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/offers" element={<Offers />} />
@@ -53,8 +46,8 @@ function App() {
           </Routes>
         </div>
         <Footer />
-      </Router>
-    </GlobalProvider>
+      </GlobalProvider>
+    </Router>
   );
 }
 

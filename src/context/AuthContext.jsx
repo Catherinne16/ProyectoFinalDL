@@ -1,53 +1,46 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-// Crear el contexto
+// Crear el contexto de autenticación
 const AuthContext = createContext();
 
-// Crear el proveedor del contexto
 export const AuthProvider = ({ children }) => {
-  // Estados para la gestión del carrito, favoritos, y perfil de usuario
-  const [user, setUser] = useState(null); // Usuario autenticado
-  const [cart, setCart] = useState([]); // Carrito de compras
-  const [favorites, setFavorites] = useState([]); // Productos favoritos
+  // Estado para el usuario autenticado
+  const [user, setUser] = useState(null);
 
-  // Función para iniciar sesión
+  // Estado para carrito y favoritos
+  const [cart, setCart] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  // 🔥 Recuperar usuario de localStorage al cargar la aplicación
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  // 🔥 Función para iniciar sesión y guardar usuario en localStorage
   const login = (userData) => {
-    setUser(userData); // Establece los datos del usuario al iniciar sesión
+    setUser(userData);
+    localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  // Función para cerrar sesión
+  // 🔥 Función para cerrar sesión, limpiar estados y eliminar localStorage
   const logout = () => {
-    setUser(null); // Elimina el usuario autenticado
-    setCart([]); // Limpiar el carrito
-    setFavorites([]); // Limpiar los favoritos
-  };
-
-  // Función para agregar productos al carrito
-  const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]); // Agregar producto al carrito
-  };
-
-  // Función para agregar productos a favoritos
-  const addToFavorites = (product) => {
-    setFavorites((prevFavorites) => [...prevFavorites, product]); // Agregar producto a favoritos
+    setUser(null);
+    setCart([]);
+    setFavorites([]);
+    localStorage.removeItem("user");
   };
 
   return (
-    <AuthContext.Provider
-      value={{
-        user, // Datos del usuario logueado
-        cart, // El carrito de compras
-        favorites, // Productos favoritos
-        login, // Función para iniciar sesión
-        logout, // Función para cerrar sesión
-        addToCart, // Función para agregar al carrito
-        addToFavorites, // Función para agregar a favoritos
-      }}
-    >
+    <AuthContext.Provider value={{ user, cart, favorites, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook para acceder al contexto de autenticación
+
+
+// Hook personalizado para usar el contexto de autenticación
 export const useAuth = () => useContext(AuthContext);
