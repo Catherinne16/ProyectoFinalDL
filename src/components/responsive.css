@@ -1,0 +1,234 @@
+/* Reseteo de estilos básicos */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f8d3;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Contenedor principal */
+.container {
+  width: 100%;
+  max-width: 1200px; /* Ajusta el máximo ancho */
+  margin: 0 auto; /* Centra el contenido */
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+/* Flexbox para centrar navbar, body y footer */
+.navbar, .footer, .main-content {
+  display: flex;
+  justify-content: center; /* Centra los elementos dentro del navbar, footer, y main */
+  align-items: center;     /* Alineación vertical */
+  width: 100%;
+}
+
+/* 📱 Extra pequeño (XS) - Teléfonos pequeños (320px - 480px) */
+@media (max-width: 480px) {
+  body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .container {
+    padding: 8px;
+    margin: 0 auto;
+    max-width: 100%;
+  }
+
+  /* Navbar */
+  .navbar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Main content */
+  .main-content {
+    width: 100%;
+    padding: 8px;
+  }
+
+  /* Footer */
+  .footer {
+    width: 100%;
+    justify-content: center;
+    padding: 16px 0;
+  }
+
+  .product-card {
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra el contenido dentro de cada card */
+    justify-content: center;
+    text-align: center; /* Asegura que el texto esté centrado */
+  }
+
+  .product-card img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  h2 {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+
+/* 📏 TABLET */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .container {
+    padding: 12px;
+    margin: 0 auto;
+  }
+
+  .navbar, .footer {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    justify-items: center;
+  }
+
+  .product-card {
+    width: 90%;
+    padding: 12px;
+    text-align: center;
+  }
+
+  .product-card img {
+    height: 220px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
+/* 💻 ORDENADOR */
+@media (min-width: 1025px) {
+  .container {
+    padding: 16px;
+    margin: 0 auto;
+  }
+
+  .navbar, .footer {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .main-content {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+
+  .product-card {
+    width: 100%;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .product-card img {
+    height: 250px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  p {
+    font-size: 18px;
+  }
+
+  button {
+    width: 100%;
+    padding: 14px;
+  }
+}
+
+  
+  /* 💻 ORDENADOR */
+  @media (min-width: 1025px) {
+    .container {
+      padding: 16px;
+      margin: 0 auto;
+    }
+  
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); /* Cuatro columnas */
+      gap: 20px;
+    }
+  
+    .product-card {
+      width: 100%;
+      padding: 16px;
+      text-align: center; /* Centra el texto en las cards */
+    }
+  
+    .product-card img {
+      height: 250px;
+      width: 100%;
+      object-fit: cover;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  
+    p {
+      font-size: 18px;
+    }
+  
+    button {
+      width: 100%;
+      padding: 14px;
+    }
+  }
+  
