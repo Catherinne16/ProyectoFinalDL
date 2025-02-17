@@ -9,15 +9,32 @@ const Sell = () => {
   const [productData, setProductData] = useState({
     title: "",
     description: "",
+    price: "",
+    category: "",
     image: null,
   });
   const [error, setError] = useState(null);
-  const [isLoading, setIsLoading] = useState(false); // Nuevo estado para la animación de carga
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProductData({ ...productData, [name]: value });
+    if (name === "price") {
+      const formattedPrice = formatPrice(value);
+      setProductData({ ...productData, [name]: formattedPrice });
+    } else {
+      setProductData({ ...productData, [name]: value });
+    }
+  };
+
+  const formatPrice = (value) => {
+    // Remueve todo lo que no sea un número
+    let formattedValue = value.replace(/[^\d]/g, "");
+    // Agrega los separadores de miles con punto
+    if (formattedValue.length > 3) {
+      formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
+    }
+    return formattedValue;
   };
 
   const handleFileChange = (e) => {
@@ -28,16 +45,18 @@ const Sell = () => {
     e.preventDefault();
     setError(null);
 
-    if (!productData.title || !productData.description || !productData.image) {
+    if (!productData.title || !productData.description || !productData.price || !productData.category || !productData.image) {
       toast.error("Por favor, completa todos los campos.");
       return;
     }
 
-    setIsLoading(true); // Activar la barra de carga
+    setIsLoading(true);
 
     const formData = new FormData();
     formData.append("title", productData.title);
     formData.append("description", productData.description);
+    formData.append("price", productData.price.replace(/\./g, "")); // Elimina los puntos antes de enviarlo
+    formData.append("category", productData.category);
     formData.append("image", productData.image);
 
     try {
@@ -58,7 +77,7 @@ const Sell = () => {
       setError("Error en el servidor");
       toast.error("Error en el servidor");
     } finally {
-      setIsLoading(false); // Desactivar la barra de carga
+      setIsLoading(false);
     }
   };
 
@@ -89,6 +108,34 @@ const Sell = () => {
           />
         </div>
         <div className="input-group">
+          <label>Precio</label>
+          <input
+            type="text" // Cambié el tipo a "text" para manejar mejor el formato
+            name="price"
+            value={productData.price}
+            onChange={handleChange}
+            required
+            className="input-field"
+            onBlur={(e) => setProductData({ ...productData, price: formatPrice(e.target.value) })} // Limpia el formato al salir del campo
+          />
+        </div>
+        <div className="input-group">
+          <label>Categoría</label>
+          <select
+            name="category"
+            value={productData.category}
+            onChange={handleChange}
+            required
+            className="input-field"
+          >
+            <option value="">Selecciona una categoría</option>
+            <option value="Moda femenina">Moda femenina</option>
+            <option value="Moda masculina">Moda masculina</option>
+            <option value="FashionMiniPet">FashionMiniPet</option>
+            <option value="Artículos varios">Artículos varios</option>
+          </select>
+        </div>
+        <div className="input-group">
           <label>Imagen del Producto</label>
           <input
             type="file"
@@ -100,7 +147,6 @@ const Sell = () => {
           />
         </div>
 
-        {/* Barra de carga */}
         {isLoading && (
           <div className="loading-bar">
             <div className="progress"></div>
@@ -112,8 +158,8 @@ const Sell = () => {
         </button>
       </form>
       <Link to="/" className="back-home-btn">
-          <FaArrowLeft className="icon" /> Volver al Inicio
-        </Link>
+        <FaArrowLeft className="icon" /> Volver al Inicio
+      </Link>
     </div>
   );
 };
