@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useGlobalContext } from "../context/GlobalContext";
 import { FaArrowLeft, FaMapPin } from "react-icons/fa";
-import "./profile.css";
+import "./Profile.css";
 
 const Profile = () => {
   const { user, cart, logout } = useGlobalContext();

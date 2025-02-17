@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router-dom";  
-import "./sell.css";
+import "./Sell.css";
 
 const Sell = () => {
   const [productData, setProductData] = useState({
