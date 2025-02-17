@@ -110,7 +110,7 @@ const Sell = () => {
         <div className="input-group">
           <label>Precio</label>
           <input
-            type="text" // Cambié el tipo a "text" para manejar mejor el formato
+            type="text"
             name="price"
             value={productData.price}
             onChange={handleChange}
@@ -118,22 +118,6 @@ const Sell = () => {
             className="input-field"
             onBlur={(e) => setProductData({ ...productData, price: formatPrice(e.target.value) })} // Limpia el formato al salir del campo
           />
-        </div>
-        <div className="input-group">
-          <label>Categoría</label>
-          <select
-            name="category"
-            value={productData.category}
-            onChange={handleChange}
-            required
-            className="input-field"
-          >
-            <option value="">Selecciona una categoría</option>
-            <option value="Moda femenina">Moda femenina</option>
-            <option value="Moda masculina">Moda masculina</option>
-            <option value="FashionMiniPet">FashionMiniPet</option>
-            <option value="Artículos varios">Artículos varios</option>
-          </select>
         </div>
         <div className="input-group">
           <label>Imagen del Producto</label>
