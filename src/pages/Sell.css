@@ -1,36 +1,41 @@
-input[type="text"]::-webkit-outer-spin-button,
-input[type="text"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none; 
   margin: 0;
 }
 
-input[type="text"] {
+input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
+/* Estilo común para el botón de volver al inicio */
 .back-home-btn {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem; 
-  padding: 10px 15px; 
-  background-color: #F6378F; 
-  color: white; 
-  text-decoration: none; 
-  border-radius: 5px; 
-  font-size: 1rem; 
-  font-weight: bold;
-  transition: background 0.3s ease;
+  margin-top: 1rem; /* Espacio en la parte superior */
+  padding: 10px 15px; /* Asegurando un buen tamaño */
+  background-color: #F6378F; /* Usamos el mismo color base */
+  color: white; /* Color del texto */
+  text-decoration: none; /* Quitamos subrayado */
+  border-radius: 5px; /* Bordes redondeados */
+  font-size: 1rem; /* Tamaño de la fuente */
+  font-weight: bold; /* Negrita */
+  transition: background 0.3s ease; /* Transición para el hover */
 }
 
+/* Efecto al pasar el ratón sobre el botón */
 .back-home-btn:hover {
-  background-color: #F7CFD8;
+  background-color: #F7CFD8; /* Tono más claro para el hover */
 }
 
+/* Asegura que el icono esté correctamente alineado con el texto */
 .icon {
-  margin-right: 0.5rem;
+  margin-right: 0.5rem; /* Espacio entre el icono y el texto */
 }
 
+/* Estilos del contenedor de la venta */
 .sell-container {
   width: 100%;
   max-width: 400px;
@@ -43,14 +48,16 @@ input[type="text"] {
   font-family: 'Noto Sans JP', sans-serif;
 }
 
+/* Título */
 .sell-title {
   font-size: 2rem;
-  color: #73C7C7;
+  color: #73C7C7; /* Tono vibrante de la paleta */
   margin-bottom: 1.5rem;
   font-weight: bold;
   text-transform: uppercase;
 }
 
+/* Grupo de inputs */
 .input-group {
   margin-bottom: 1.2rem;
   text-align: left;
@@ -63,10 +70,11 @@ input[type="text"] {
   margin-bottom: 0.3rem;
 }
 
+/* Campos de entrada */
 .input-field {
   width: 100%;
   padding: 0.8rem;
-  border: 2px solid #73C7C7;
+  border: 2px solid #73C7C7; /* Usamos el tono vibrante para el borde */
   border-radius: 8px;
   font-size: 1rem;
   outline: none;
@@ -74,14 +82,15 @@ input[type="text"] {
 }
 
 .input-field:focus {
-  border-color: #F7CFD8;
+  border-color: #F7CFD8; /* Cambio a un tono más claro al enfocar */
   box-shadow: 0 0 5px #F7CFD8;
 }
 
+/* Botón de acción (para vender) */
 .sell-btn {
   width: 100%;
   padding: 0.8rem;
-  background-color: #73C7C7;
+  background-color: #73C7C7; /* Color base del botón */
   color: white;
   font-size: 1.1rem;
   font-weight: bold;
@@ -93,7 +102,7 @@ input[type="text"] {
 }
 
 .sell-btn:hover {
-  background-color: #A6F1E0;
+  background-color: #A6F1E0; /* Cambio a otro tono de la paleta en hover */
   transform: translateY(-3px);
 }
 
@@ -101,6 +110,7 @@ input[type="text"] {
   transform: translateY(1px);
 }
 
+/* Texto y enlaces complementarios */
 .signup-text {
   margin-top: 1rem;
   font-size: 1rem;
@@ -117,6 +127,8 @@ input[type="text"] {
   text-decoration: underline;
 }
 
+
+/* Estilos para la barra de carga */
 .loading-bar {
   width: 100%;
   height: 5px;
@@ -129,7 +141,7 @@ input[type="text"] {
 .progress {
   width: 0;
   height: 100%;
-  background-color: #73C7C7;
+  background-color: #73C7C7; /* Color de la barra de progreso */
   animation: progressAnimation 3s infinite;
 }
 
@@ -145,6 +157,7 @@ input[type="text"] {
   }
 }
 
+/* Botón deshabilitado */
 .submit-btn:disabled {
   background-color: #ccc;
   cursor: not-allowed;
