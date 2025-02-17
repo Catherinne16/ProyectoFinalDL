@@ -26,14 +26,35 @@ export const GlobalProvider = ({ children }) => {
   }, []); // Este efecto se ejecuta solo una vez cuando el componente se monta
 
   // Función para manejar el login (cuando un usuario se loguea)
-  const login = (userData) => {
-    setUser(userData); // Establece el usuario en el estado global
-    localStorage.setItem("user", JSON.stringify(userData)); // Guardamos el usuario en localStorage para persistencia
+  const login = async (credentials) => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setUser({ correo: credentials.correo, token: data.token }); // Guardamos los datos del usuario en el estado
+        localStorage.setItem("user", JSON.stringify({ correo: credentials.correo, token: data.token })); // Persistimos los datos en localStorage
+      } else {
+        throw new Error(data.error || "Correo o contraseña incorrectos.");
+      }
+    } catch (error) {
+      console.error(error);
+      throw new Error("Error en el servidor. Inténtalo más tarde.");
+    }
   };
 
   // Función para manejar el logout (cuando un usuario cierra sesión)
   const logout = () => {
     setUser(null); // Limpiamos el estado de usuario (lo deslogueamos)
+    setCart([]); // Limpiamos el carrito
+    setFavorites([]); // Limpiamos los favoritos
     localStorage.removeItem("user"); // Eliminamos el usuario del localStorage
   };
 

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useGlobalContext } from "../context/GlobalContext"; // Usamos el contexto global
 import { FaArrowLeft } from "react-icons/fa";
-import { useAuth } from "../context/AuthContext"; // Importamos el contexto de autenticación
 import "./login.css";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ correo: "", clave: "" });
   const [error, setError] = useState(null);
-  const { login } = useGlobalContext(); // Accedemos a la función login del contexto
+  const { login } = useGlobalContext();
   const navigate = useNavigate();
-  
 
   // Función para manejar los cambios en los inputs
   const handleChange = (e) => {
@@ -23,25 +21,30 @@ const Login = () => {
     e.preventDefault();
     setError(null); // Limpiar error previo
 
-    // Credenciales de prueba
-    const testCredentials = { correo: "test@example.com", clave: "123456" };
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(credentials),
+      });
 
-    // Verificamos si las credenciales coinciden
-    if (
-      credentials.correo === testCredentials.correo &&
-      credentials.clave === testCredentials.clave
-    ) {
-      // Creamos un objeto de usuario ficticio con el token
-      const userData = {
-        correo: credentials.correo,
-        token: "fake-jwt-token", // Este sería el token real si estuvieras usando JWT
-      };
+      const data = await response.json();
 
-      // Guardamos el usuario en el contexto y en localStorage
-      login(userData);
-      navigate("/profile"); // Redirigir al perfil
-    } else {
-      setError("Correo o contraseña incorrectos.");
+      if (response.ok) {
+        const userData = {
+          correo: credentials.correo,
+          token: data.token,
+        };
+
+        login(userData); 
+        navigate("/profile"); 
+      } else {
+        setError(data.error || "Correo o contraseña incorrectos.");
+      }
+    } catch (error) {
+      setError("Error en el servidor. Inténtalo más tarde.");
     }
   };
 
@@ -56,7 +59,7 @@ const Login = () => {
             type="email"
             name="correo"
             value={credentials.correo}
-            onChange={handleChange} // Agregamos la función para manejar el cambio
+            onChange={handleChange} 
             required
             className="input-field"
           />
@@ -67,7 +70,7 @@ const Login = () => {
             type="password"
             name="clave"
             value={credentials.clave}
-            onChange={handleChange} // Agregamos la función para manejar el cambio
+            onChange={handleChange}
             required
             className="input-field"
           />

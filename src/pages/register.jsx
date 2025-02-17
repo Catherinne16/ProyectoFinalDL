@@ -6,8 +6,8 @@ import "./register.css";
 const Register = () => {
   // Estado para almacenar los datos del formulario
   const [userData, setUserData] = useState({
-    correo: "test@example.com",  // Campo de correo electrónico
-    clave: "123456",   // Campo de contraseña
+    correo: "",  // Campo de correo electrónico
+    clave: "",   // Campo de contraseña
   });
 
   const [error, setError] = useState(null); // Estado para manejar errores
@@ -24,40 +24,25 @@ const Register = () => {
     e.preventDefault(); // Evita que la página se recargue
     setError(null); // Resetea el estado de error
 
-    // Credenciales de prueba (comentadas para pruebas locales)
-    const testCredentials = [
-      { correo: "test@example.com", clave: "123456" },
-      { correo: "user@example.com", clave: "password123" },
-    ];
+    // Enviar los datos al backend
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
 
-    // Comprobamos si las credenciales existen (simulando un registro local)
-    if (testCredentials.some(user => user.correo === userData.correo && user.clave === userData.clave)) {
-      alert("Credenciales de prueba registradas correctamente.");
-      navigate("/login"); // Redirige al login después del "registro"
-    } else {
-      setError("Las credenciales no son válidas o ya están registradas.");
+      const data = await response.json(); // Convertimos la respuesta a JSON
+
+      if (response.ok) {
+        alert("Registro exitoso. Ahora inicia sesión.");
+        navigate("/login"); // Redirige al login después del "registro"
+      } else {
+        setError(data.error || "Error al registrarse."); // Muestra un error si el backend responde con un problema
+      }
+    } catch (error) {
+      setError("Error en el servidor. Inténtalo más tarde."); // Manejo de errores de conexión
     }
-
-    // Lo siguiente está comentado para evitar hacer la llamada al backend
-    // try {
-    //   // Enviamos los datos al backend (comentado por el momento)
-    //   const response = await fetch("http://localhost:3000/api/register", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(userData),
-    //   });
-
-    //   const data = await response.json(); // Convertimos la respuesta a JSON
-
-    //   if (response.ok) {
-    //     alert("Registro exitoso. Ahora inicia sesión.");
-    //     navigate("/login"); // Redirige al usuario al login después del registro
-    //   } else {
-    //     setError(data.error || "Error al registrarse."); // Muestra un error si el backend responde con un problema
-    //   }
-    // } catch (error) {
-    //   setError("Error en el servidor. Inténtalo más tarde."); // Manejo de errores de conexión
-    // }
   };
 
   return (
