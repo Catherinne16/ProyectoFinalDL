@@ -2,7 +2,7 @@ import React from "react";
 import { FaHeart } from "react-icons/fa";
 import { useGlobalContext } from "../context/GlobalContext";
 import { useLocation } from "react-router-dom"; // Se importa useLocation
-import "./productCard.css";
+import "./productcard.css";
 
 const ProductCard = ({ product, onAddToCart }) => {
   const { cart, setCart, favorites, setFavorites } = useGlobalContext();
