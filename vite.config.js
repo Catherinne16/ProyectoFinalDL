@@ -8,10 +8,13 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: path.resolve('index.html'), // Asegura que index.html es el punto de entrada
+      input: path.resolve('index.html'),
     },
   },
   server: {
-    port: 5173, // Asegura que se sirva en el puerto correcto
+    port: process.env.PORT || 5173,
+  },
+  preview: {
+    allowedHosts: ['proyectofinaldl.onrender.com', 'localhost'],
   },
 });
