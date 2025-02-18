@@ -24,7 +24,7 @@ function ProtectedRoute({ children }) {
 function App() {
   return (
     <Router>
-      <GlobalProvider> {/* 🔥 Ahora el contexto está dentro de Router */}
+      <GlobalProvider> {}
         <ToastContainer />
         <Navbar />
         <div className="content">
