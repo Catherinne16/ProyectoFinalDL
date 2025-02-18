@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext.jsx"; // Usamos el contexto de autenticación
 import { FaArrowLeft } from "react-icons/fa";
@@ -7,7 +7,7 @@ import "./login.css";
 const Login = () => {
   const [credentials, setCredentials] = useState({ correo: "", clave: "" });
   const [error, setError] = useState(null);
-  const { login } = useAuth();
+  const { user, login } = useAuth();
   const navigate = useNavigate();
 
   // Función para manejar los cambios en los inputs
@@ -35,7 +35,6 @@ const Login = () => {
       if (response.ok) {
         const userData = { correo: credentials.correo, token: data.token };
         login(userData); // Guardar usuario en el contexto y localStorage
-        navigate("/profile"); // Redirigir a la página del perfil
       } else {
         setError(data.error || "Correo o contraseña incorrectos.");
       }
@@ -43,6 +42,13 @@ const Login = () => {
       setError("Error en el servidor. Inténtalo más tarde.");
     }
   };
+
+  // Redirigir al perfil cuando el usuario esté autenticado
+  useEffect(() => {
+    if (user) {
+      navigate("/profile"); // Redirige a la página del perfil si el usuario está autenticado
+    }
+  }, [user, navigate]);
 
   return (
     <div className="login-container">

@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import { GlobalProvider, useGlobalContext } from "./context/GlobalContext";
+import { AuthProvider } from "./context/AuthContext";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/home";
@@ -17,14 +17,14 @@ import Sell from "./pages/Sell";
 import Profile from "./pages/Profile";
 
 function ProtectedRoute({ children }) {
-  const { user } = useGlobalContext();
+  const { user } = useAuth();
   return user ? children : <Navigate to="/login" />;
 }
 
 function App() {
   return (
     <Router>
-      <GlobalProvider> {}
+      <AuthProvider>
         <ToastContainer />
         <Navbar />
         <div className="content">
@@ -43,10 +43,11 @@ function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/offers" element={<Offers />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
         <Footer />
-      </GlobalProvider>
+      </AuthProvider>
     </Router>
   );
 }

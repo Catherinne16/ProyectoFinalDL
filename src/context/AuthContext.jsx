@@ -15,17 +15,17 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      setUser(JSON.parse(storedUser)); // Cargar el usuario desde localStorage si existe
     }
   }, []);
 
-  // 🔥 Función para iniciar sesión y guardar usuario en localStorage
+  // Función para iniciar sesión y guardar usuario en localStorage
   const login = (userData) => {
     setUser(userData);
     localStorage.setItem("user", JSON.stringify(userData));
   };
 
-  // 🔥 Función para cerrar sesión, limpiar estados y eliminar localStorage
+  // Función para cerrar sesión, limpiar estados y eliminar localStorage
   const logout = () => {
     setUser(null);
     setCart([]);
@@ -39,8 +39,6 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
-
-
 
 // Hook personalizado para usar el contexto de autenticación
 export const useAuth = () => useContext(AuthContext);
