@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-import { useGlobalContext } from "../context/GlobalContext"; // Usamos GlobalContext para todo
+import { useGlobalContext } from "../context/GlobalContext"; // Usamos GlobalContext para obtener el carrito y el usuario
 import "./navbar.css";
 import logo from "../assets/images/logonavbar.png";
 
