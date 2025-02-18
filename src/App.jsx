@@ -4,17 +4,10 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Home from "./pages/home";
 import Login from "./pages/login";
-import Register from "./pages/register";
 import Cart from "./pages/cart";
-import ProductDetails from "./pages/productDetails";
-import Favorites from "./pages/favorites";
-import Offers from "./pages/offers";
-import Contact from "./pages/contact";
+import Profile from "./pages/Profile";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
-import Carousel from "./components/carousel";
-import Sell from "./pages/Sell";
-import Profile from "./pages/Profile";
 
 function ProtectedRoute({ children }) {
   const { user } = useAuth();
@@ -31,18 +24,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-
-            {/* Rutas protegidas */}
-            <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
-            <Route path="/favorites" element={<ProtectedRoute><Favorites /></ProtectedRoute>} />
-            <Route path="/sell" element={<ProtectedRoute><Sell /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
-
-            {/* Otras rutas */}
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/offers" element={<Offers />} />
-            <Route path="/contact" element={<Contact />} />
+            <Route path="/cart" element={<ProtectedRoute><Cart /></ProtectedRoute>} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>

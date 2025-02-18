@@ -4,14 +4,9 @@ import React, { createContext, useContext, useState, useEffect } from "react";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Estado para el usuario autenticado
   const [user, setUser] = useState(null);
 
-  // Estado para carrito y favoritos
-  const [cart, setCart] = useState([]);
-  const [favorites, setFavorites] = useState([]);
-
-  // 🔥 Recuperar usuario de localStorage al cargar la aplicación
+  // Recuperar usuario de localStorage al cargar la aplicación
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -28,13 +23,11 @@ export const AuthProvider = ({ children }) => {
   // Función para cerrar sesión, limpiar estados y eliminar localStorage
   const logout = () => {
     setUser(null);
-    setCart([]);
-    setFavorites([]);
     localStorage.removeItem("user");
   };
 
   return (
-    <AuthContext.Provider value={{ user, cart, favorites, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

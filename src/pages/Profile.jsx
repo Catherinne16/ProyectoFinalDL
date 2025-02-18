@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext.jsx"; // Usamos el contexto de autenticación
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext"; // Usamos el contexto de autenticación
 import { FaArrowLeft, FaMapPin } from "react-icons/fa";
 import "./Profile.css";
 
 const Profile = () => {
-  const { user, cart, logout } = useAuth();
+  const { user, logout } = useAuth();
   const [location, setLocation] = useState("Ubicación no disponible");
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
   const navigate = useNavigate();
@@ -47,21 +47,23 @@ const Profile = () => {
     navigate("/"); // Redirigir a la página de inicio después de cerrar sesión
   };
 
+  if (!user) {
+    return null; // Si no hay usuario, no renderiza el perfil
+  }
+
   return (
     <div className="profile-container">
       <h2 className="profile-title">Perfil de Usuario</h2>
       <div className="profile-info">
-        <p><strong>Bienvenido, @{user.correo}</strong></p> {/* Mostrar el correo del usuario */}
+        <p><strong>Bienvenido, @{user.correo}</strong></p>
         <p><strong>Fecha y Hora:</strong> {currentDateTime}</p>
         <div className="location-info">
           <FaMapPin className="location-icon" /> <strong>Ubicación:</strong> {location}
         </div>
-        <p><strong>Correo:</strong> {user.correo}</p> {/* Mostrar el correo aquí también */}
+        <p><strong>Correo:</strong> {user.correo}</p>
       </div>
 
       <div className="profile-actions">
-        <Link to="/cart" className="profile-btn">Ver Carrito ({cart.length})</Link>
-        <Link to="/sell" className="profile-btn sell-btn">Subir Artículos</Link>
         <button onClick={handleLogout} className="logout-btn">Cerrar Sesión</button>
       </div>
 
