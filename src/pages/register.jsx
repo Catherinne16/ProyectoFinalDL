@@ -10,8 +10,8 @@ const Register = () => {
     clave: "",   // Campo de contraseña
   });
 
-  const [error, setError] = useState(null); // Estado para manejar errores
-  const navigate = useNavigate(); // Hook para redireccionar después del registro
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   // Maneja los cambios en los inputs y actualiza el estado
   const handleChange = (e) => {
@@ -24,7 +24,8 @@ const Register = () => {
     e.preventDefault(); // Evita que la página se recargue
     setError(null); // Resetea el estado de error
 
-    // Enviar los datos al backend
+    console.log("Datos del formulario antes de enviarlos:", userData); 
+
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/register`, {
         method: "POST",
@@ -34,14 +35,16 @@ const Register = () => {
 
       const data = await response.json(); // Convertimos la respuesta a JSON
 
+      console.log("Respuesta del backend:", data); 
+
       if (response.ok) {
         alert("Registro exitoso. Ahora inicia sesión.");
-        navigate("/login"); // Redirige al login después del "registro"
+        navigate("/login");
       } else {
         setError(data.error || "Error al registrarse."); // Muestra un error si el backend responde con un problema
       }
     } catch (error) {
-      setError("Error en el servidor. Inténtalo más tarde."); // Manejo de errores de conexión
+      setError("Error en el servidor. Inténtalo más tarde."); 
     }
   };
 

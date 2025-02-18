@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../context/GlobalContext";
+import { useAuth } from "../context/AuthContext.jsx"; // Usamos el contexto de autenticación
 import { FaArrowLeft, FaMapPin } from "react-icons/fa";
 import "./Profile.css";
 
 const Profile = () => {
-  const { user, cart, logout } = useGlobalContext();
+  const { user, cart, logout } = useAuth();
   const [location, setLocation] = useState("Ubicación no disponible");
   const [currentDateTime, setCurrentDateTime] = useState(new Date().toLocaleString());
   const navigate = useNavigate();
@@ -44,19 +44,19 @@ const Profile = () => {
 
   const handleLogout = () => {
     logout();
-    navigate("/");
+    navigate("/"); // Redirigir a la página de inicio después de cerrar sesión
   };
 
   return (
     <div className="profile-container">
       <h2 className="profile-title">Perfil de Usuario</h2>
       <div className="profile-info">
-        <p><strong>Bienvenido, @{user.username}</strong></p>
+        <p><strong>Bienvenido, @{user.correo}</strong></p> {/* Mostrar el correo del usuario */}
         <p><strong>Fecha y Hora:</strong> {currentDateTime}</p>
         <div className="location-info">
           <FaMapPin className="location-icon" /> <strong>Ubicación:</strong> {location}
         </div>
-        <p><strong>Correo:</strong> {user.email}</p>
+        <p><strong>Correo:</strong> {user.correo}</p> {/* Mostrar el correo aquí también */}
       </div>
 
       <div className="profile-actions">

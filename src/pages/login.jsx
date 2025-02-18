@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useGlobalContext } from "../context/GlobalContext"; // Usamos el contexto global
+import { useAuth } from "../context/AuthContext.jsx"; // Usamos el contexto de autenticación
 import { FaArrowLeft } from "react-icons/fa";
 import "./login.css";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ correo: "", clave: "" });
   const [error, setError] = useState(null);
-  const { login } = useGlobalContext();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   // Función para manejar los cambios en los inputs
@@ -33,13 +33,9 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        const userData = {
-          correo: credentials.correo,
-          token: data.token,
-        };
-
-        login(userData); 
-        navigate("/profile"); 
+        const userData = { correo: credentials.correo, token: data.token };
+        login(userData); // Guardar usuario en el contexto y localStorage
+        navigate("/profile"); // Redirigir a la página del perfil
       } else {
         setError(data.error || "Correo o contraseña incorrectos.");
       }
@@ -51,7 +47,7 @@ const Login = () => {
   return (
     <div className="login-container">
       <h2>Iniciar sesión</h2>
-      {error && <p className="error-message">{error}</p>} {/* Mostrar error si existe */}
+      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit} className="login-form">
         <div className="input-group">
           <label className="text-black">Correo electrónico</label>
@@ -59,7 +55,7 @@ const Login = () => {
             type="email"
             name="correo"
             value={credentials.correo}
-            onChange={handleChange} 
+            onChange={handleChange}
             required
             className="input-field"
           />
