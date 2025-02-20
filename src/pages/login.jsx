@@ -1,52 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext.jsx"; // Usamos el contexto de autenticación
+import { useGlobalContext } from "../context/GlobalContext.jsx";
 import { FaArrowLeft } from "react-icons/fa";
 import "./login.css";
 
 const Login = () => {
   const [credentials, setCredentials] = useState({ correo: "", clave: "" });
   const [error, setError] = useState(null);
-  const { user, login } = useAuth();
+  const { user, login } = useGlobalContext();
   const navigate = useNavigate();
 
-  // Función para manejar los cambios en los inputs
   const handleChange = (e) => {
     const { name, value } = e.target;
     setCredentials({ ...credentials, [name]: value });
   };
 
-  // Función para manejar el submit del formulario
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null); // Limpiar error previo
+    setError(null); 
 
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        const userData = { correo: credentials.correo, token: data.token };
-        login(userData); // Guardar usuario en el contexto y localStorage
-      } else {
-        setError(data.error || "Correo o contraseña incorrectos.");
-      }
+      await login(credentials); // Usamos la función login del GlobalContext
     } catch (error) {
-      setError("Error en el servidor. Inténtalo más tarde.");
+      setError(error.message);
     }
   };
 
-  // Redirigir al perfil cuando el usuario esté autenticado
   useEffect(() => {
     if (user) {
-      navigate("/profile"); // Redirige a la página del perfil si el usuario está autenticado
+      navigate("/profile");
     }
   }, [user, navigate]);
 

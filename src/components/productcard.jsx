@@ -41,7 +41,6 @@ const ProductCard = ({ product, onAddToCart }) => {
         <h3>{product.name}</h3>
         <p>{product.brand}</p>
         <div className="price">
-          <span className="old-price">{product.price}</span>
           <span className="discount-price">{product.discount}</span>
         </div>
         <button className="cart-btn" onClick={handleAddToCart}>

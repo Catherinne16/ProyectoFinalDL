@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaSearch, FaUser, FaShoppingCart } from "react-icons/fa";
-import { useGlobalContext } from "../context/GlobalContext"; // Usamos GlobalContext para obtener el carrito y el usuario
+import { useGlobalContext } from "../context/GlobalContext";
 import "./navbar.css";
 import logo from "../assets/images/logonavbar.png";
 
 const Navbar = () => {
   const [menuActive, setMenuActive] = useState(false);
-  // Obtenemos el usuario y la cantidad de items del carrito desde GlobalContext
-  const { user, cartItems } = useGlobalContext();
+  const { user, cart } = useGlobalContext();
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -17,7 +16,6 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        {/* Logo */}
         <Link to="/">
           <img src={logo} alt="Logo" className="navbar-logo" />
         </Link>
@@ -30,12 +28,9 @@ const Navbar = () => {
 
         <div className={`menu ${menuActive ? "active" : ""}`}>
           <ul>
-            {/* Enlaces públicos */}
             <li><Link to="/">Inicio</Link></li>
             <li><Link to="/offers">Ofertas</Link></li>
             <li><Link to="/contact">Contacto</Link></li>
-
-            {/* Enlaces privados (solo si el usuario está logueado) */}
             {user && (
               <>
                 <li><Link to="/profile">Perfil</Link></li>
@@ -51,7 +46,6 @@ const Navbar = () => {
         </div>
 
         <div className="profile-icons">
-          {/* Si el usuario está logueado, se muestran el icono de perfil y el de carrito */}
           {user ? (
             <>
               <Link to="/profile">
@@ -59,13 +53,10 @@ const Navbar = () => {
               </Link>
               <Link to="/cart">
                 <FaShoppingCart className="icon" />
-                {cartItems > 0 && (
-                  <span className="cart-badge">{cartItems}</span>
-                )}
+                {cart.length > 0 && <span className="cart-badge">{cart.length}</span>}
               </Link>
             </>
           ) : (
-            // Si no está logueado, se muestra el icono de login
             <Link to="/login">
               <FaUser className="icon" />
             </Link>

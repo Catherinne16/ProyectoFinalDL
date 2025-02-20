@@ -1,6 +1,6 @@
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   margin: 0;
 }
 
@@ -49,7 +49,7 @@ input[type="number"] {
 }
 
 /* Título */
-.sell-title {
+.sell-container h2 {
   font-size: 2rem;
   color: #73C7C7; /* Tono vibrante de la paleta */
   margin-bottom: 1.5rem;
@@ -71,7 +71,9 @@ input[type="number"] {
 }
 
 /* Campos de entrada */
-.input-field {
+input[type="text"],
+textarea,
+input[type="file"] {
   width: 100%;
   padding: 0.8rem;
   border: 2px solid #73C7C7; /* Usamos el tono vibrante para el borde */
@@ -81,13 +83,15 @@ input[type="number"] {
   transition: all 0.3s ease;
 }
 
-.input-field:focus {
+input[type="text"]:focus,
+textarea:focus,
+input[type="file"]:focus {
   border-color: #F7CFD8; /* Cambio a un tono más claro al enfocar */
   box-shadow: 0 0 5px #F7CFD8;
 }
 
 /* Botón de acción (para vender) */
-.sell-btn {
+button[type="submit"] {
   width: 100%;
   padding: 0.8rem;
   background-color: #73C7C7; /* Color base del botón */
@@ -101,32 +105,14 @@ input[type="number"] {
   margin-top: 1rem;
 }
 
-.sell-btn:hover {
+button[type="submit"]:hover {
   background-color: #A6F1E0; /* Cambio a otro tono de la paleta en hover */
   transform: translateY(-3px);
 }
 
-.sell-btn:active {
+button[type="submit"]:active {
   transform: translateY(1px);
 }
-
-/* Texto y enlaces complementarios */
-.signup-text {
-  margin-top: 1rem;
-  font-size: 1rem;
-  color: black;
-}
-
-.signup-link {
-  color: black;
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.signup-link:hover {
-  text-decoration: underline;
-}
-
 
 /* Estilos para la barra de carga */
 .loading-bar {
@@ -157,8 +143,21 @@ input[type="number"] {
   }
 }
 
-/* Botón deshabilitado */
-.submit-btn:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
+/* Estilo para el botón de volver al inicio */
+.sell-container a {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 1rem;
+  color: #F6378F;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.sell-container a:hover {
+  text-decoration: underline;
+}
+
+.sell-container .icon {
+  margin-right: 0.5rem;
 }

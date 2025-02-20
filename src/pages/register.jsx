@@ -6,8 +6,8 @@ import "./register.css";
 const Register = () => {
   // Estado para almacenar los datos del formulario
   const [userData, setUserData] = useState({
-    correo: "",  // Campo de correo electrónico
-    clave: "",   // Campo de contraseña
+    correo: "", 
+    clave: "", 
   });
 
   const [error, setError] = useState(null);
@@ -21,8 +21,8 @@ const Register = () => {
 
   // Maneja el envío del formulario
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita que la página se recargue
-    setError(null); // Resetea el estado de error
+    e.preventDefault();
+    setError(null);
 
     console.log("Datos del formulario antes de enviarlos:", userData); 
 
@@ -41,7 +41,7 @@ const Register = () => {
         alert("Registro exitoso. Ahora inicia sesión.");
         navigate("/login");
       } else {
-        setError(data.error || "Error al registrarse."); // Muestra un error si el backend responde con un problema
+        setError(data.error || "Error al registrarse.");
       }
     } catch (error) {
       setError("Error en el servidor. Inténtalo más tarde."); 

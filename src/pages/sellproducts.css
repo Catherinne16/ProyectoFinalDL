@@ -1,0 +1,88 @@
+/* Contenedor principal */
+.sell-products-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+/* Grid de productos */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
+    gap: 2rem; /* Espaciado entre las tarjetas */
+    padding: 10px 0;
+    width: 100%;
+    max-width: 1620px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de productos */
+.product-card {
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-card h3 {
+    margin: 1rem 0 0.5rem;
+    font-size: 1.2rem;
+}
+
+.product-card p {
+    font-size: 1rem;
+    color: #555;
+}
+
+.product-card span {
+    font-weight: bold;
+    color: #333;
+}
+
+.delete-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 8px 12px;
+    background: #FF4D4D; /* Color rojo */
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+  }
+  
+  .delete-btn:hover {
+    background: #FFB3B3; /* Color rojo claro para hover */
+    color: #C30000; /* Color de texto más oscuro */
+  }  
+
+.back-home-btn {
+    display: inline-block;
+    margin-top: 1.5rem; /* Reducimos un poco el margen superior */
+    padding: 10px 14px;
+    background: #F6378F;
+    color: white;
+    text-decoration: none;
+    border-radius: 25px;
+    transition: background 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+  }
+  
+  .back-home-btn:hover {
+    background: #F7CFD8;
+    color: #73C7C7;
+  }

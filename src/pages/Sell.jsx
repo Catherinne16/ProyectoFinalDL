@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import { Link } from "react-router-dom";  
+import { Link } from "react-router-dom";
+import { useGlobalContext } from "../context/GlobalContext"; // Importa el contexto global
 import "./Sell.css";
 
 const Sell = () => {
@@ -10,11 +11,10 @@ const Sell = () => {
     title: "",
     description: "",
     price: "",
-    category: "",
     image: null,
   });
-  const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { addProduct, user } = useGlobalContext(); // Accede al usuario desde el contexto global
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -28,9 +28,7 @@ const Sell = () => {
   };
 
   const formatPrice = (value) => {
-    // Remueve todo lo que no sea un número
     let formattedValue = value.replace(/[^\d]/g, "");
-    // Agrega los separadores de miles con punto
     if (formattedValue.length > 3) {
       formattedValue = formattedValue.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.");
     }
@@ -43,39 +41,25 @@ const Sell = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(null);
-
-    if (!productData.title || !productData.description || !productData.price || !productData.category || !productData.image) {
+    if (!productData.title || !productData.description || !productData.price || !productData.image) {
       toast.error("Por favor, completa todos los campos.");
       return;
     }
 
+    if (!user) {
+      toast.error("Debes estar autenticado para vender un producto.");
+      return;
+    }
+
     setIsLoading(true);
-
-    const formData = new FormData();
-    formData.append("title", productData.title);
-    formData.append("description", productData.description);
-    formData.append("price", productData.price.replace(/\./g, "")); // Elimina los puntos antes de enviarlo
-    formData.append("category", productData.category);
-    formData.append("image", productData.image);
-
     try {
-      const response = await fetch("http://localhost:3000/api/products", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        toast.success("Producto subido exitosamente");
-        navigate("/products");
-      } else {
-        const data = await response.json();
-        setError(data.error || "Error al subir el producto");
-        toast.error(data.error || "Error al subir el producto");
-      }
+      // Incluye el correo del usuario automáticamente en los datos del producto
+      const productWithUserEmail = { ...productData, correo: user.correo };
+      await addProduct(productWithUserEmail); // Aquí se enviará el correo del usuario junto con los datos del producto
+      toast.success("Producto subido exitosamente");
+      navigate("/products");
     } catch (error) {
-      setError("Error en el servidor");
-      toast.error("Error en el servidor");
+      toast.error(error.message || "Error al subir el producto");
     } finally {
       setIsLoading(false);
     }
@@ -84,65 +68,32 @@ const Sell = () => {
   return (
     <div className="sell-container">
       <h2>Vende tu Producto</h2>
-      {error && <p className="error-message">{error}</p>}
       <form onSubmit={handleSubmit} className="sell-form" encType="multipart/form-data">
         <div className="input-group">
-          <label>Título</label>
-          <input
-            type="text"
-            name="title"
-            value={productData.title}
-            onChange={handleChange}
-            required
-            className="input-field"
-          />
+          <label htmlFor="title">Título</label>
+          <input type="text" id="title" name="title" value={productData.title} onChange={handleChange} required />
         </div>
         <div className="input-group">
-          <label>Descripción</label>
-          <textarea
-            name="description"
-            value={productData.description}
-            onChange={handleChange}
-            required
-            className="input-field"
-          />
+          <label htmlFor="description">Descripción</label>
+          <textarea id="description" name="description" value={productData.description} onChange={handleChange} required />
         </div>
         <div className="input-group">
-          <label>Precio</label>
-          <input
-            type="text"
-            name="price"
-            value={productData.price}
-            onChange={handleChange}
-            required
-            className="input-field"
-            onBlur={(e) => setProductData({ ...productData, price: formatPrice(e.target.value) })} // Limpia el formato al salir del campo
-          />
+          <label htmlFor="price">Precio</label>
+          <input type="text" id="price" name="price" value={productData.price} onChange={handleChange} required />
         </div>
         <div className="input-group">
-          <label>Imagen del Producto</label>
-          <input
-            type="file"
-            name="image"
-            accept="image/*"
-            onChange={handleFileChange}
-            required
-            className="input-field"
-          />
+          <label htmlFor="image">Imagen del Producto</label>
+          <input type="file" id="image" name="image" accept="image/*" onChange={handleFileChange} required />
         </div>
 
-        {isLoading && (
-          <div className="loading-bar">
-            <div className="progress"></div>
-          </div>
-        )}
+        {isLoading && <p>Subiendo producto...</p>}
 
-        <button type="submit" className="submit-btn" disabled={isLoading}>
+        <button type="submit" disabled={isLoading}>
           {isLoading ? "Cargando..." : "Subir Producto"}
         </button>
       </form>
-      <Link to="/" className="back-home-btn">
-        <FaArrowLeft className="icon" /> Volver al Inicio
+      <Link to="/">
+        <FaArrowLeft /> Volver al Inicio
       </Link>
     </div>
   );
