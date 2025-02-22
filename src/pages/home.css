@@ -1,82 +1,102 @@
-/* Estilos generales */
-body {
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
     font-family: 'Poppins', sans-serif;
-    background-color: #F5F5F5; /* Fondo suave */
-    margin: 0;
-    padding: 0;
-}
-
-/* Para que el home-container use toda la pantalla */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#root, .home-container {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Contenedor principal */
-.home-container {
-    align-items: center;
     background-color: #F5F5F5;
-    justify-content: flex-start; /* Cambio para que no haya espacio innecesario al final */
-    padding-top: 0;
-    padding-bottom: 2rem;
-}
-
-/* Contenedor de contenido */
-.content {
-    padding: 0 2rem;
-    width: 100%;
+  }
+  
+  html, body {
     height: 100%;
+    width: 100%;
+  }
+  
+  /* 📌 Contenedor principal */
+  .home-container {
     display: flex;
     flex-direction: column;
-    gap: 2rem; /* Espaciado entre el carrusel y las cards */
-}
-
-/* Contenedor del Carrusel */
-.carousel {
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 2rem;
+  }
+  
+  /* 🎠 Carrusel */
+  .carousel {
     width: 100%;
     max-width: 1620px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-}
-
-.carousel img {
-    margin-top: 2rem;
+  }
+  
+  .carousel img {
     width: 100%;
-    max-height: 540px;
+    max-height: 400px;
     object-fit: cover;
     border-radius: 10px;
-    transition: opacity 0.5s ease-in-out;
-}
-
-/* Contenedor de las Cards de Productos */
-.products-grid {
+  }
+  
+  /* 📏 Ajuste en móviles */
+  @media (max-width: 768px) {
+    .carousel img {
+      max-height: 300px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .carousel img {
+      max-height: 250px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .carousel img {
+      max-height: 220px;
+    }
+  }
+  
+  /* 🛒 Grid de productos */
+  .products-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
-    gap: 2rem; /* Espaciado entre las tarjetas */
-    padding: 10px 0;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    padding: 10px;
     width: 100%;
     max-width: 1620px;
     margin: 0 auto;
-}
-
-/* Responsividad: 2 filas, 4 columnas en pantallas grandes */
-@media (max-width: 1200px) {
+  }
+  
+  /* 📏 Ajuste en móviles */
+  @media (max-width: 1024px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas medianas */
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
     }
-}
-
-/* Product Card */
-.product-card {
+  }
+  
+  @media (max-width: 768px) {
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .products-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .products-grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
+  /* 🏷️ Tarjeta de producto */
+  .product-card {
     background: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -85,81 +105,61 @@ html, body {
     transition: transform 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
-}
-
-.product-card:hover {
-    transform: scale(1.05); /* Aumenta ligeramente la card al pasar el ratón */
-}
-
-.product-card img {
+  }
+  
+  .product-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .product-card img {
     width: 100%;
-    height: 250px;
+    height: 200px;
     object-fit: cover;
-    border-bottom: 1px solid #ddd; /* Separador sutil */
-}
-
-/* Información del producto */
-.product-info {
-    padding: 15px;
-}
-
-.product-info h3 {
-    font-size: 1.1rem;
-    color: #333;
-    margin: 10px 0;
-    text-transform: capitalize;
-}
-
-.product-info .price {
-    font-size: 1.1rem;
-    color: #F6378F; /* Color atractivo para el precio */
-    font-weight: bold;
-}
-
-.product-info .discount {
-    font-size: 0.9rem;
-    color: #A6F1E0;
-    text-decoration: line-through;
-    margin-left: 10px;
-}
-
-.product-info .button {
-    margin-top: 10px;
-    background-color: #73C7C7; /* Color de fondo para el botón */
-    color: white;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* 📏 Ajuste en móviles */
+  @media (max-width: 480px) {
+    .product-card img {
+      height: 150px;
+    }
+  }
+  
+  @media (max-width: 375px) {
+    .product-card img {
+      height: 140px;
+    }
+  }
+  
+  /* 🛒 Información del producto */
+  .product-info {
     padding: 10px;
+  }
+  
+  .product-info h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 5px 0;
+  }
+  
+  .product-info .price {
+    font-size: 1rem;
+    color: #F6378F;
+    font-weight: bold;
+  }
+  
+  .product-info .button {
+    margin-top: 5px;
+    background-color: #73C7C7;
+    color: white;
+    padding: 8px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
-    font-weight: bold;
-}
-
-.product-info .button:hover {
-    background-color: #A6F1E0; /* Cambio de color al pasar el ratón */
-}
-
-/* Ajustes en el botón de navegación del carrusel */
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    font-size: 0.9rem;
+  }
+  
+  .product-info .button:hover {
     background-color: #A6F1E0;
-    color: #F6378F;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 30px;
-    border-radius: 75%;
-}
-
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
-
-.prev:hover, .next:hover {
-    background-color: #F4F8D3;
-}
+  }
+  

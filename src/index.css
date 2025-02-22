@@ -1,48 +1,95 @@
-/* 📏 Tablet */
-@media (max-width: 1024px) {
-  .products-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+/* 🎯 Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* 📱 Móviles y tablets pequeñas */
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F5F5F5;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+/* 🏠 Contenedor principal */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #F6378F;
+  padding: 10px 20px;
+  color: white;
+}
+
+/* 📱 Navbar Responsive */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    gap: 1rem;
-    align-items: center;
     text-align: center;
-  }
-
-  .products-grid {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  /* Botón de volver a inicio mejorado */
-  .back-home-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 80%; /* Ajustado para que se vea bien en móviles */
-    margin: 2rem auto; /* Centrado automáticamente */
-    padding: 1rem;
-    font-size: 1rem;
-    text-align: center;
-    position: static; /* Elimina posiciones que pueden desalinear */
+    padding: 15px;
   }
 }
 
-/* 🎨 Estilos generales del botón */
+/* 🎠 Carrusel */
+.carousel {
+  width: 100%;
+  max-width: 1620px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel img {
+  width: 100%;
+  height: auto;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+/* 📏 Ajuste responsive en móviles pequeños */
+@media (max-width: 768px) {
+  .carousel img {
+    max-height: 300px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel img {
+    max-height: 250px;
+  }
+}
+
+@media (max-width: 375px) {
+  .carousel img {
+    max-height: 220px;
+  }
+}
+
+/* 🎨 Botón de volver a inicio */
 .back-home-btn {
   background-color: #F6378F;
   color: white;
-  font-size: 1.2rem;
+  font-size: 1rem;
   border-radius: 5px;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s;
   width: fit-content;
-  margin: 5rem auto;
-  padding: 1rem 2rem;
+  margin: 2rem auto;
+  padding: 0.8rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
