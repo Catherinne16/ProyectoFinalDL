@@ -7,7 +7,6 @@ import Register from "./pages/register";
 import Cart from "./pages/cart";
 import ProductDetails from "./pages/productDetails";
 import Favorites from "./pages/favorites";
-import Offers from "./pages/offers";
 import Contact from "./pages/contact";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
@@ -42,7 +41,6 @@ function App() {
 
             {/* Otras rutas */}
             <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/offers" element={<Offers />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>

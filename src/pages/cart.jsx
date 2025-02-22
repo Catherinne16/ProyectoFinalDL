@@ -12,7 +12,7 @@ const Cart = () => {
     return cart.reduce((total, item) => {
       const price = item.discount
         ? parseInt(item.discount.replace("$", "").replace(".", ""))
-        : parseInt(item.price.replace("$", "").replace(".", ""));
+        : parseInt(item.precio.replace("$", "").replace(",00", ""));
       return total + price * item.quantity;
     }, 0);
   };
@@ -62,8 +62,8 @@ const Cart = () => {
               {cart.map((item) => (
                 <tr key={item.id}>
                   <td>
-                    <img src={item.image} alt={item.name} className="cart-product-image" />
-                    {item.name}
+                    <img src={item.imagen_url} alt={item.nombre} className="cart-product-image" />
+                    {item.nombre}
                   </td>
                   <td>
                     <button onClick={() => updateQuantity(item.id, -1)}>-</button>
@@ -73,11 +73,11 @@ const Cart = () => {
                   <td>
                     {item.discount ? (
                       <div className="price-container">
-                        <span className="original-price">{item.price}</span>
+                        <span className="original-price">{item.precio}</span>
                         <span className="discount-price">{item.discount}</span>
                       </div>
                     ) : (
-                      <span className="normal-price">{item.price}</span>
+                      <span className="normal-price">{item.precio.replace('.00', '')}</span>
                     )}
                   </td>
                   <td>
