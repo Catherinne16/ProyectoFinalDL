@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext, useEffect, useCallback } from "react";
 
 const GlobalContext = createContext();
 
@@ -6,6 +6,7 @@ export const GlobalProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [favorites, setFavorites] = useState([]);
   const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -15,24 +16,26 @@ export const GlobalProvider = ({ children }) => {
     }
   }, []);
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
+    if (!user?.token) return; 
+  
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos`, {
         headers: {
-          Authorization: `Bearer ${user?.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       });
-
+  
       if (!response.ok) {
         throw new Error("Error al obtener los productos");
       }
-
+  
       const data = await response.json();
       setProducts(data);
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [user?.token]);
 
   useEffect(() => {
     if (user) {
@@ -40,6 +43,22 @@ export const GlobalProvider = ({ children }) => {
     }
   }, [user]);
 
+  const fetchAllProducts = useCallback(async () => {
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos-publicos`);
+      
+      if (!response.ok) {
+        throw new Error("Error al obtener todos los productos");
+      }
+  
+      const data = await response.json();
+      setAllProducts(data);
+    } catch (error) {
+      console.error("Error al obtener los productos públicos:", error);
+      return [];
+    }
+  }, []);
+  
   const login = async (credentials) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
@@ -141,9 +160,11 @@ export const GlobalProvider = ({ children }) => {
         favorites,
         setFavorites,
         products,
+        allProducts,
         addProduct,
         deleteProduct, // Ahora incluimos deleteProduct en el contexto
         fetchProducts,
+        fetchAllProducts,
         user,
         login,
         logout,

@@ -7,7 +7,6 @@ import "./productcard.css";
 const ProductCard = ({ product, onAddToCart }) => {
   const { cart, setCart, favorites, setFavorites } = useGlobalContext();
   const location = useLocation(); // Obtenemos la ruta actual
-  const isOffersPage = location.pathname === "/offers"; // Determinamos si estamos en ofertas
 
   const isFavorite = favorites.some((fav) => fav.id === product.id);
 
@@ -33,15 +32,15 @@ const ProductCard = ({ product, onAddToCart }) => {
   };
 
   return (
-    <div className={`product-card ${isOffersPage ? 'offers-card' : ''}`}>
+    <div className={`product-card`}>
       <div className="product-image">
-        <img src={product.image} alt={product.name} />
+        <img src={product.imagen_url} alt={product.name} />
       </div>
       <div className="product-info">
-        <h3>{product.name}</h3>
-        <p>{product.brand}</p>
+        <h3>{product.nombre}</h3>
+        <p>{product.descripcion}</p>
         <div className="price">
-          <span className="discount-price">{product.discount}</span>
+          <span className="discount-price">{product.precio}</span>
         </div>
         <button className="cart-btn" onClick={handleAddToCart}>
           Agregar al carrito

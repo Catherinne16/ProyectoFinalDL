@@ -4,9 +4,9 @@ import App from "./App.jsx";
 import { GlobalProvider } from "./context/GlobalContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  //<React.StrictMode>
       <GlobalProvider>
         <App />
       </GlobalProvider>
-  </React.StrictMode>
+  //</React.StrictMode>
 );

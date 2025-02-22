@@ -29,7 +29,6 @@ const Navbar = () => {
         <div className={`menu ${menuActive ? "active" : ""}`}>
           <ul>
             <li><Link to="/">Inicio</Link></li>
-            <li><Link to="/offers">Ofertas</Link></li>
             <li><Link to="/contact">Contacto</Link></li>
             {user && (
               <>
