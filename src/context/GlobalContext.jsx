@@ -9,27 +9,59 @@ export const GlobalProvider = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
   const [user, setUser] = useState(null);
 
+  // Recuperar carrito desde localStorage al iniciar la app
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    if (storedUser) {
-      setUser(storedUser);
+    const storedCart = JSON.parse(localStorage.getItem("cart"));
+    if (storedCart) {
+      setCart(storedCart);
     }
   }, []);
 
+  // Guardar carrito en localStorage cada vez que cambie
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  // Verificar sesión almacenada y su expiración
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    if (storedUser) {
+      const currentTime = new Date().getTime();
+      if (storedUser.expiresAt && storedUser.expiresAt < currentTime) {
+        logout(); // Cierra sesión si el token ha expirado
+      } else {
+        setUser(storedUser);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (user?.expiresAt) {
+      const timeLeft = user.expiresAt - new Date().getTime();
+      if (timeLeft > 0) {
+        const logoutTimer = setTimeout(() => {
+          logout();
+        }, timeLeft);
+
+        return () => clearTimeout(logoutTimer);
+      }
+    }
+  }, [user]);
+
   const fetchProducts = useCallback(async () => {
-    if (!user?.token) return; 
-  
+    if (!user?.token) return;
+
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
-  
+
       if (!response.ok) {
         throw new Error("Error al obtener los productos");
       }
-  
+
       const data = await response.json();
       setProducts(data);
     } catch (error) {
@@ -46,11 +78,11 @@ export const GlobalProvider = ({ children }) => {
   const fetchAllProducts = useCallback(async () => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos-publicos`);
-      
+
       if (!response.ok) {
         throw new Error("Error al obtener todos los productos");
       }
-  
+
       const data = await response.json();
       setAllProducts(data);
     } catch (error) {
@@ -58,7 +90,7 @@ export const GlobalProvider = ({ children }) => {
       return [];
     }
   }, []);
-  
+
   const login = async (credentials) => {
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/login`, {
@@ -72,7 +104,8 @@ export const GlobalProvider = ({ children }) => {
       const data = await response.json();
 
       if (response.ok) {
-        const userData = { correo: credentials.correo, token: data.token };
+        const expiresAt = new Date().getTime() + 60 * 60 * 1000;
+        const userData = { correo: credentials.correo, token: data.token, expiresAt };
         setUser(userData);
         localStorage.setItem("user", JSON.stringify(userData));
       } else {
@@ -80,13 +113,12 @@ export const GlobalProvider = ({ children }) => {
       }
     } catch (error) {
       console.error(error);
-      throw new Error("Error en el servidor. Inténtalo más tarde.");
+      throw new Error("Contraseña incorrecta, ¡intente nuevamente!");
     }
   };
 
   const logout = () => {
     setUser(null);
-    setCart([]);
     setFavorites([]);
     setProducts([]);
     localStorage.removeItem("user");
@@ -97,7 +129,6 @@ export const GlobalProvider = ({ children }) => {
       throw new Error("Faltan datos");
     }
 
-    // Asegúrate de que el usuario esté autenticado y tenga un correo
     if (!user || !user.correo) {
       throw new Error("Usuario no autenticado");
     }
@@ -107,7 +138,7 @@ export const GlobalProvider = ({ children }) => {
     formData.append("descripcion", productData.description);
     formData.append("precio", productData.price.replace(/\./g, ""));
     formData.append("image", productData.image);
-    formData.append("usuario_email", user.correo); // Aquí estamos incluyendo el correo del usuario autenticado
+    formData.append("usuario_email", user.correo);
 
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/productos`, {
@@ -145,7 +176,6 @@ export const GlobalProvider = ({ children }) => {
         throw new Error(data.error || "Error al eliminar el producto");
       }
 
-      // Actualizamos el estado para eliminar el producto de la lista
       setProducts((prevProducts) => prevProducts.filter((product) => product.id !== productId));
     } catch (error) {
       console.error("Error al eliminar el producto:", error);
@@ -162,7 +192,7 @@ export const GlobalProvider = ({ children }) => {
         products,
         allProducts,
         addProduct,
-        deleteProduct, // Ahora incluimos deleteProduct en el contexto
+        deleteProduct,
         fetchProducts,
         fetchAllProducts,
         user,
