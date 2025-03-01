@@ -1,88 +1,168 @@
-/* Contenedor principal */
-.sell-products-container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 2rem;
-    text-align: center;
-}
-
-/* Grid de productos */
-.products-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 columnas */
-    gap: 2rem; /* Espaciado entre las tarjetas */
-    padding: 10px 0;
-    width: 100%;
-    max-width: 1620px;
-    margin: 0 auto;
-}
-
-/* Tarjetas de productos */
-.product-card {
+/* Contenedor principal de la venta */
+.sell-container {
+    width: 90%; /* Ajuste de ancho para pantallas pequeñas */
+    max-width: 500px; /* No se estira demasiado en pantallas grandes */
+    margin: 50px auto;
+    padding: 2rem; /* Menos padding en pantallas pequeñas */
     background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
     text-align: center;
-}
-
-.product-card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
-
-.product-card h3 {
-    margin: 1rem 0 0.5rem;
-    font-size: 1.2rem;
-}
-
-.product-card p {
-    font-size: 1rem;
-    color: #555;
-}
-
-.product-card span {
-    font-weight: bold;
-    color: #333;
-}
-
-.delete-btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 8px 12px;
-    background: #FF4D4D; /* Color rojo */
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-size: 1rem;
-    font-weight: 500;
-    transition: background 0.3s ease;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
+    font-family: 'Noto Sans JP', sans-serif;
   }
   
-  .delete-btn:hover {
-    background: #FFB3B3; /* Color rojo claro para hover */
-    color: #C30000; /* Color de texto más oscuro */
-  }  
-
-.back-home-btn {
-    display: inline-block;
-    margin-top: 1.5rem; /* Reducimos un poco el margen superior */
-    padding: 10px 14px;
-    background: #F6378F;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    transition: background 0.3s ease;
-    font-size: 1rem;
-    font-weight: 500;
-    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.1);
-  }
-  
-  .back-home-btn:hover {
-    background: #F7CFD8;
+  /* Título */
+  .sell-container h2 {
+    font-size: 2rem;
     color: #73C7C7;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
   }
+  
+  /* Grupo de inputs */
+  .input-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+  
+  .input-group label {
+    font-size: 1rem;
+    color: black;
+    display: block;
+    margin-bottom: 0.3rem;
+  }
+  
+  /* Campos de entrada */
+  input[type="text"],
+  textarea,
+  input[type="file"] {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid #73C7C7;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+  }
+  
+  input[type="text"]:focus,
+  textarea:focus,
+  input[type="file"]:focus {
+    border-color: #F7CFD8;
+    box-shadow: 0 0 5px #F7CFD8;
+  }
+  
+  /* Botón de acción (para vender) */
+  button[type="submit"] {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #73C7C7;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 1rem;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #A6F1E0;
+    transform: translateY(-3px);
+  }
+  
+  button[type="submit"]:active {
+    transform: translateY(1px);
+  }
+  
+  /* Barra de carga */
+  .loading-bar {
+    width: 100%;
+    height: 5px;
+    background-color: #e0e0e0;
+    margin-top: 1rem;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    width: 0;
+    height: 100%;
+    background-color: #73C7C7;
+    animation: progressAnimation 3s infinite;
+  }
+  
+  @keyframes progressAnimation {
+    0% {
+      width: 0;
+    }
+    50% {
+      width: 50%;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  /* Estilo para el enlace de volver al inicio */
+  .sell-container a {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 2rem; /* Espacio extra en pantallas pequeñas */
+    color: #F6378F;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .sell-container a:hover {
+    text-decoration: underline;
+  }
+  
+  .sell-container .icon {
+    margin-right: 0.5rem;
+  }
+  
+  /* Responsividad: Media Queries */
+  @media (max-width: 768px) {
+    .sell-container {
+      width: 95%;
+      padding: 2rem 1rem; /* Menos padding para pantallas pequeñas */
+    }
+  
+    .sell-container h2 {
+      font-size: 1.6rem; /* Título más pequeño */
+    }
+  
+    .input-group {
+      margin-bottom: 1rem;
+    }
+  
+    button[type="submit"] {
+      padding: 1rem;
+      font-size: 1rem; /* Reduce el tamaño de la fuente */
+    }
+  
+    .sell-container a {
+      font-size: 0.9rem; /* Tamaño de fuente más pequeño en pantallas pequeñas */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sell-container {
+      padding: 1.5rem;
+    }
+  
+    .input-group input,
+    .input-group textarea,
+    .input-group select {
+      font-size: 0.9rem; /* Tamaño de texto más pequeño */
+    }
+  
+    button[type="submit"] {
+      font-size: 0.9rem;
+    }
+  }
+  

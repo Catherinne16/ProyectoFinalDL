@@ -8,7 +8,6 @@
 }
 
 .carousel img {
-  margin-top: 2rem;
   width: 100%;
   height: auto; /* Ajusta automáticamente la altura */
   object-fit: cover; /* Cubre toda el área sin deformar la imagen */
@@ -24,9 +23,9 @@
   background-color: #A6F1E0;
   color: #F6378F;
   border: none;
-  padding: 15px 20px; /* Mayor tamaño para mejorar la interacción */
+  padding: 10px 15px; /* Ajustamos el tamaño del padding */
   cursor: pointer;
-  font-size: 35px; /* Tamaño del icono de la flecha */
+  font-size: 25px; /* Ajustamos el tamaño de la fuente */
   border-radius: 50%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para mayor contraste */
   transition: background-color 0.3s, transform 0.3s; /* Efectos en hover */
@@ -42,16 +41,59 @@
 
 /* Hover sobre los botones */
 .prev:hover, .next:hover {
-  background-color: #F4F8D3; /* Color de fondo al pasar el mouse */
-  transform: scale(1.1); /* Hace que los botones crezcan un poco */
+  background-color: #F4F8D3;
+  transform: scale(1.1);
 }
 
-/* Hacer el carrusel más responsivo */
+/* Hacer el carrusel más responsivo para pantallas S, M, L */
+
+/* Pantallas pequeñas (S) */
+@media (max-width: 576px) {
+  .carousel {
+    max-width: 100%;
+  }
+
+  .carousel img {
+    margin-top: 1rem; /* Reducir el margen superior */
+    max-height: 250px; /* Limitar la altura de la imagen */
+  }
+
+  .prev, .next {
+    padding: 8px 12px; /* Reducimos el tamaño del padding */
+    font-size: 20px; /* Reducimos el tamaño de la fuente */
+  }
+}
+
+/* Pantallas medianas (M) */
 @media (max-width: 768px) {
   .carousel {
     max-width: 100%;
   }
+
   .carousel img {
-    max-height: 300px; /* Limita la altura para pantallas más pequeñas */
+    margin-top: 1.5rem; /* Reducir el margen superior */
+    max-height: 350px; /* Limitar la altura de la imagen */
+  }
+
+  .prev, .next {
+    padding: 10px 15px; /* Reducimos el padding un poco */
+    font-size: 25px; /* Ajustamos el tamaño de la fuente */
+  }
+}
+
+/* Pantallas grandes (L) */
+@media (min-width: 769px) {
+  .carousel {
+    max-width: 100%;
+  }
+
+  .carousel img {
+    margin-top: 2rem; /* Mantener el margen superior */
+    max-height: 500px; /* Limitar la altura de la imagen */
+  }
+
+  .prev, .next {
+    padding: 15px 20px; /* Botones de tamaño más grande */
+    font-size: 35px; /* Mantener el tamaño original */
   }
 }

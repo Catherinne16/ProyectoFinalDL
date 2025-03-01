@@ -1,100 +1,140 @@
 /* Grid de productos */
 .products-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-gap: 1.5rem;
-    max-width: 1200px;
-    padding: 2rem;
-    justify-content: center; /* Asegura que las tarjetas estén centradas */
-    margin: auto;
-  }
-  
-  .product-card {
-    position: relative;
-    background-color: white;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 1rem 1rem 3rem;
-    text-align: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Mantener las tarjetas de mínimo 250px */
+  grid-gap: 1.5rem;
+  max-width: 1200px;
+  padding: 2rem;
+  justify-content: center; /* Centrado */
+  margin: auto;
 }
 
+/* Tarjeta del producto */
+.product-card {
+  position: relative;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem 1rem 2rem; /* Reducir padding inferior para evitar alargamiento */
+  text-align: center;
+  display: flex; /* Usar flexbox para mayor control */
+  flex-direction: column; /* Para mantener los elementos en una columna */
+  justify-content: space-between; /* Asegura que los elementos estén bien distribuidos */
+  height: 100%; /* Asegura que la tarjeta ocupe todo el espacio disponible */
+}
+
+/* Imagen del producto */
+.product-image {
+  height: 60%; /* Ajustar la altura de la imagen */
+  overflow: hidden;
+}
+
+/* Imagen del producto - Asegura que se ajuste bien */
+.product-image img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Información del producto */
+.product-info {
+  padding: 1rem;
+}
+
+/* Botones */
+.cart-btn {
+  background: #F6378F;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover en el botón de agregar al carrito */
+.cart-btn:hover {
+  background-color: #73C7C7;
+}
+
+/* Botón de favorito */
+.favorite-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #fff;
+  border: 2px solid #F6378F;
+  border-radius: 50%;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Hover en el botón de favorito */
+.favorite-btn:hover {
+  background-color: #F4F8D3;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo del ícono de favorito */
+.favorite-btn svg {
+  width: 18px;
+  height: 18px;
+  color: #F6378F;
+}
+
+/* Hover sobre el ícono de favorito */
+.favorite-btn:hover svg {
+  color: #fff;
+  transform: rotate(20deg);
+}
+
+/* Media Queries para Responsividad */
+
+/* Pantallas pequeñas (S) */
+@media (max-width: 576px) {
+  .products-grid {
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    padding: 1rem; /* Reducir el padding */
+  }
+
+  .product-card {
+    padding: 1rem; /* Ajustar el padding */
+    height: auto; /* Hacer que la tarjeta tenga una altura automática */
+  }
+
   .product-image {
-    height: 70%;
-    overflow: hidden;
-  }
-  
-  .product-image img {
-    width: 100%;
-    object-fit: cover;
-  }
-  
-  .product-info {
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  .product-info h3 {
-    margin: 0;
-  }
-  
-  .price {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .old-price {
-    text-decoration: line-through;
-    color: #888;
-    margin-right: 0.5rem;
-  }
-  
-  .cart-btn {
-    background: #F6378F;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .cart-btn:hover {
-    background-color: #73C7C7;
+    height: 50%; /* Reducir la altura de la imagen */
   }
 
   .favorite-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: #fff;
-    border: 2px solid #F6378F; /* Color de borde más definido */
-    border-radius: 50%; /* Hace que el botón sea circular */
-    padding: 10px; /* Aumenté el padding para hacerlo más grande */
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s; /* Animación de fondo y sombra */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra sutil para darle profundidad */
+    top: 5px;
+    right: 5px;
+    padding: 6px;
   }
-  
-  .favorite-btn:hover {
-    background-color: #F4F8D3; /* Color de fondo en hover */
-    transform: scale(1.1); /* Hace que el botón crezca un poco en hover */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra más fuerte en hover */
+}
+
+/* Pantallas medianas (M) */
+@media (max-width: 768px) {
+  .products-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajustar el tamaño de las tarjetas para pantallas medianas */
   }
-  
-  .favorite-btn svg {
-    transition: color 0.3s, transform 0.3s;
-    width: 20px; /* Ajusté el tamaño del icono */
-    height: 20px;
-    color: #F6378F; /* Color predeterminado del icono */
+
+  .product-card {
+    padding: 1rem;
+    height: auto;
   }
-  
-  .favorite-btn:hover svg {
-    color: #fff; /* Cambia el color del icono en hover */
-    transform: rotate(20deg); /* Rotación suave al hacer hover */
+
+  .product-image {
+    height: 55%; /* Ajustar la altura de la imagen */
   }
-  
+
+  .favorite-btn {
+    padding: 8px;
+  }
+}

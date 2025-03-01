@@ -16,16 +16,19 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-content">
-        <Link to="/">
-          <img src={logo} alt="Logo" className="navbar-logo" />
-        </Link>
-
-        <div className="menu-toggle" onClick={toggleMenu}>
-          <div className="bar"></div>
-          <div className="bar"></div>
-          <div className="bar"></div>
+        {/* Contenedor logo y menu hamburguesa */}
+        <div className="logo-menu-container">
+          <Link to="/">
+            <img src={logo} alt="Logo" className="navbar-logo" />
+          </Link>
+          <div className="menu-toggle" onClick={toggleMenu}>
+            <div className="bar"></div>
+            <div className="bar"></div>
+            <div className="bar"></div>
+          </div>
         </div>
 
+        {/* Menú principal */}
         <div className={`menu ${menuActive ? "active" : ""}`}>
           <ul>
             <li><Link to="/">Inicio</Link></li>
@@ -39,11 +42,13 @@ const Navbar = () => {
           </ul>
         </div>
 
+        {/* Barra de búsqueda */}
         <div className="search-bar">
           <input type="text" placeholder="Buscar..." />
           <FaSearch className="icon" />
         </div>
 
+        {/* Iconos de perfil y carrito */}
         <div className="profile-icons">
           {user ? (
             <>
