@@ -25,7 +25,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(import.meta.env.VITE_API_URL)
+    console.log(import.meta.env.VITE_API_URL);
     try {
       const response = await fetch(`${import.meta.env.VITE_API_URL}/api/contact`, {
         method: "POST",
@@ -38,9 +38,13 @@ const Contact = () => {
 
       if (response.ok) {
         setFormData({ name: "", email: "", message: "" });
+        alert("Correo enviado exitosamente"); 
+      } else {
+        alert("Error al enviar el mensaje. Inténtalo de nuevo."); 
       }
     } catch (error) {
       setResponseMessage("Error al enviar el mensaje.");
+      alert("Error al enviar el mensaje. Verifica tu conexión."); 
     }
   };
 
