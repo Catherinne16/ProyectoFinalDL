@@ -6,7 +6,7 @@ import Carousel from "../components/carousel";
 import Footer from "../components/footer";
 import mochiImage from "../assets/images/mochi.jpg";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Para los estilos
+import "react-toastify/dist/ReactToastify.css";
 import { useGlobalContext } from "../context/GlobalContext";
 import "./home.css";
 
@@ -21,7 +21,6 @@ const Home = () => {
     console.log(productos);
   }, [setProductos]);
 
-  // Función para manejar la adición del producto al carrito y mostrar el toast
   const handleAddToCart = (product) => {
     addToCart(product);
     toast.success(`¡${product.nombre} agregado al carrito!`, {
@@ -32,7 +31,7 @@ const Home = () => {
 
   return (
     <div className="home-container">
-      <div className="content"> {/* Contenido con padding */}
+      <div className="content"> {}
         <Carousel /> {/* Carrusel */}
         <div className="products-grid">
           {allProducts.map((product) => (
@@ -40,7 +39,7 @@ const Home = () => {
               key={product.id} 
               product={{ 
                 ...product, 
-                precio: product.precio.replace(".00", "") // Elimina los decimales
+                precio: product.precio.replace(".00", "") 
               }} 
               onAddToCart={() => handleAddToCart(product)} 
             />
